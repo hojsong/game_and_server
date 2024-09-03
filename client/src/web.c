@@ -1,5 +1,5 @@
 #include "../header/client.h"
 
-void	wlmodeChoice()
-{
-}
+// void	wlmodeChoice()
+// {
+// }

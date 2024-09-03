@@ -2,12 +2,13 @@
 
 int main()
 {
-	g_game.mlx = mlx_init();
-	g_game.win = mlx_new_window(g_game.mlx, Window_x, Window_y, "Dodge Bullets");
-	game_image_xpm_init();
+	t_game game;
+	game.mlx = mlx_init();
+	game.win = mlx_new_window(game.mlx, Window_x, Window_y, "Dodge Bullets");
+	game_image_xpm_init(&game);
 	while(1)
 	{
-		mapinit();
-		mlxstart();
+		mapinit(&game);
+		mlxstart(game);
 	}
 }
