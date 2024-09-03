@@ -6,25 +6,25 @@
 // }
 
 
-void	mlxstart(t_game game)
+int	mlxstart(int key_code, t_game *game)
 {
     // char    **data;
 
-	if(game.wlmode == 0)
-		mlx_hook(game.win, X_EVENT_KEY_PRESS, 0, &wlmodeChoice, &game);
-	else if(game.my_character == NULL)
-		mlx_hook(game.win, X_EVENT_KEY_PRESS, 0, &airplainChoice, &game);
-	else if(game.mode == 0)
-		mlx_hook(game.win, X_EVENT_KEY_PRESS, 0, &modeChoice, &game);
-    // else if(game.die == 0)
-    	// mlx_hook(game.win, X_EVENT_KEY_PRESS, 0, &gaming, &game);
+	if(game->wlmode == 0)
+		wlmodeChoice(key_code, game);
+	else if(game->my_character.num == -1)
+		airplainChoice(key_code, game);
+	else if(game->mode == 0)
+		modeChoice(key_code, game);
+    // else if(game->die == 0)
+    	// gaming(key_code, game);
     else
     {
-	    // if (game.wlmode == 1)
+	    // if (game->wlmode == 1)
     		// data = servDataLoad(game);
-	    // else if (game.wlmode == 2)
+	    // else if (game->wlmode == 2)
 		    // data = localDataLoad(game);
-    	mlx_hook(game.win, X_EVENT_KEY_PRESS, 0, &continue_or_exit, &game);
+    	continue_or_exit(key_code, game);
     }
-	mlx_loop(game.mlx);
+	return (0);
 }

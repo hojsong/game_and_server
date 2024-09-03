@@ -34,7 +34,7 @@ void	game_image_xpm_init(t_game *game)
 		i++;
 	}
 	game->wlmode = 0;
-	game->my_character = NULL;
+	game->my_character.num = -1;
 	game->mode = 0;
 	game->die = 0;
 }

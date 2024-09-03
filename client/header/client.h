@@ -8,8 +8,8 @@
 
 # define WHITE_COLOR 	16777215
 
-# define Window_x		800
-# define Window_y 		800
+# define Window_x		600
+# define Window_y 		600
 
 # define Charactet_x	16
 # define Charactet_y	16
@@ -34,7 +34,7 @@
 typedef struct m_character{
 	int		x;
 	int		y;
-	void	*image;
+	int		num;
 } t_character;
 
 typedef struct m_bullet{
@@ -47,7 +47,7 @@ typedef struct m_game{
 	int			mode;
 	int			wlmode;
 	int			die;
-	t_character *my_character;
+	t_character my_character;
 	void		*win;
 	void		*mlx;
 	t_bullet	*bullets;
@@ -67,11 +67,10 @@ int			wlmodeChoice(int key_code, t_game *game);
 int			airplainChoice(int key_code, t_game *game);
 int			continue_or_exit(int key_code, t_game *game);
 
-void		mlxstart(t_game game);
-
 char		**servDataLoad(t_game game);
 char		**localDataLoad(t_game game);
 
 void		mapinit(t_game *game);
 void		game_image_xpm_init(t_game *game);
 
+int			mlxstart(int key_code, t_game *game);

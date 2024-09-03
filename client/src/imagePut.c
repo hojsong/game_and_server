@@ -38,7 +38,6 @@ void    choiceImagesPut(char *str, t_game *game)
     void    *modexpmimage;
 
     resource = xpm_dir_sum("./source/image/xpm/", str, ".xpm");
-    // printf("%s\n", resource);
     x0 = (Window_x - ARROW_X) / 2;
     x1 = (Window_x / 2) - 200;
     y0 = (Window_y / 2) + 200;
@@ -49,12 +48,12 @@ void    choiceImagesPut(char *str, t_game *game)
     mlx_put_image_to_window(game->mlx, game->win, game->arrow[0], x0, y1);
     modexpmimage = mlx_xpm_file_to_image(game->mlx, \
 			resource, &img_width, &img_height);
-    if (modexpmimage != NULL)
+    free(resource);
+    if (modexpmimage)
     {
         mlx_put_image_to_window(game->mlx, game->win, modexpmimage, x1, y3);
-        free(modexpmimage);
+        mlx_destroy_image(game->mlx, modexpmimage);
     }
-    free(resource);
 }
 
 void    airPlainChoicePut(int result, t_game *game)
@@ -69,9 +68,12 @@ void    airPlainChoicePut(int result, t_game *game)
     y3 = (Window_y - Charactet_y) / 2;
     
     mlx_put_image_to_window(game->mlx, game->win, game->backgraunbd, 0, 0);
-    mlx_put_image_to_window(game->mlx, game->win, game->arrow[0], x0, y0);
-    mlx_put_image_to_window(game->mlx, game->win, game->backgraunbd, x0, y1);
-    mlx_put_image_to_window(game->mlx, game->win, game->characterImages[result], x1, y3);
+    mlx_put_image_to_window(game->mlx, game->win, game->arrow[1], x0, y0);
+    mlx_put_image_to_window(game->mlx, game->win, game->arrow[0], x0, y1);
+    if (game->characterImages[result])
+        mlx_put_image_to_window(game->mlx, game->win, game->characterImages[result], x1, y3);
+    else
+        printf("NULL\n");
 }
 
 void    imagePut()
