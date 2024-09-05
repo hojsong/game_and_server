@@ -1,20 +1,29 @@
 #pragma once
 
-#include "../mlx/mlx.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
+# include "../mlx/mlx.h"
+# include <string.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <pthread.h>
+# include <sys/time.h>
+# include <math.h>
+# include <time.h>
+# define PI 3.14159265358979323846
 
 # define WHITE_COLOR 	16777215
-
-# define Window_x		600
-# define Window_y 		600
+# define Player_speed	3
+# define Window_x		400
+# define Window_y 		400
 
 # define Charactet_x	16
 # define Charactet_y	16
 # define ARROW_X 		36
 # define ARROW_Y 		47
+
+# define EASY_MODE				20
+# define NORMAL_MODE			30
+# define HARD_MODE				40
 
 # define X_EVENT_KEY_PRESS		2
 # define X_EVENT_KET_RELEASE	3
@@ -38,29 +47,39 @@ typedef struct m_character{
 } t_character;
 
 typedef struct m_bullet{
-	int		x;
-	int		y;
-	int		angle;
+	double	x;
+	double	y;
+	double	angle;
+	double	speed;
+	pthread_mutex_t	*bullet_mutex;
 } t_bullet;
 
 typedef struct m_game{
-	int			mode;
-	int			wlmode;
-	int			die;
-	t_character my_character;
-	void		*win;
-	void		*mlx;
-	t_bullet	*bullets;
-	time_t		startTime;
-	void		*characterImages[5];
-	void		*arrow[2];
-	void		*bulletimage;
-	void		*backgraunbd;
-	char		**map;
+	int				mode;
+	int				wlmode;
+	int				die;
+	int				size;
+	pthread_mutex_t	player_mutex;
+	t_character 	my_character;
+	struct timeval	startTime;
+	void			*win;
+	void			*mlx;
+	pthread_mutex_t	*die_mutex;
+	pthread_t		*thread;
+	// pthread_t		collision_decision;
+	t_bullet		*bullets;
+	int				character_x[3];
+	int				character_y[3];
+	void			*characterImages[3];
+	void			*arrow[2];
+	void			*bulletimage;
+	// void		*characterImages[6];
+	// void		*characterImages[5];
+	// void		*backgraunbd;
 } t_game;
 
-void    	choiceImagesPut(char *str, t_game *game);
-void    	airPlainChoicePut(int result, t_game *game);
+void		choiceImagesPut(char *str, t_game *game);
+void		airPlainChoicePut(int result, t_game *game);
 
 int			modeChoice(int key_code, t_game *game);
 int			wlmodeChoice(int key_code, t_game *game);
@@ -74,3 +93,13 @@ void		mapinit(t_game *game);
 void		game_image_xpm_init(t_game *game);
 
 int			mlxstart(int key_code, t_game *game);
+
+
+int     bulletOfMode(t_game *game);
+void	*bullets_create_destroy(void *ptr);
+
+void	*bullets_movement(void *ptr);
+
+void	*space_bullets_collision_decision(void *ptr);
+
+void    *put_game_ing_image(void *ptr);

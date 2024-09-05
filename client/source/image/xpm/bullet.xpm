@@ -1,8 +1,13 @@
 /* XPM */
-static char *dd18bd4409104a81dccfc536a2a1da45E37Q7VgHygGOt1Ra[] = {
+static char *_16abb9ea93644d6cb1519af2029259eGAB5StZIkmrFNw1D[] = {
 /* columns rows colors chars-per-pixel */
-"1 1 1 1 ",
+"4 4 3 1 ",
+"  c #1A1C2C",
+". c #38B764",
 "X c #A7F070",
 /* pixels */
-"X"
+" .. ",
+".XX.",
+".XX.",
+" .. "
 };

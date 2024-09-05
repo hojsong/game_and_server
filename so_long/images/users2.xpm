@@ -232,7 +232,7 @@ static char *result[] = {
 "8X8X+ r k / u.' { { X.X.X.X.X.' ] t._ ' ' X.{ ) } X.' u.i./ i + ",
 "8X8X% % : i ^ { E E :.7.3.3.<...) t.t.s.7.:.E R !  .X.u.p._ p @ ",
 "8X8X$ * 6 f ~ j.+X~.z.K Y ,.8.w.h.d./ ( U z.~.+Xv.>.X.t.] z r + ",
-"8X8X# a I [ G .X:X:Xk.o o ~ x.K.K.c.x     k.;X<X%X*.o.( h 2 8X8X",
+"8X8X# a I [ G .X:X:Xk.o o ~ x.K.K.c.x	 k.;X<X%X*.o.( h 2 8X8X",
 "8X8X+ d :.6.H .X:X:XB.4 w ` D.!.!.K.#.w 5 B.:X2X&Xm.$.k 2 . 8X8X",
 "8X8X@ d 2.6.) j.%X$X^.q.Z.S.K.W.!.T.J.F.q.G.$X&X).J.h.l r O 8X8X",
 "8X8X# s I ,.I @.;.n.T.W.W.W.W.K.F.Z.F.J.W.T.m.m.Y.D.h.l r + 8X8X",
@@ -241,9 +241,9 @@ static char *result[] = {
 "8X8X+ 6 9 C.;X,Xb.Q =.n.T.Q.!.Y.D.A.A.F.E.T.n.=.&.W d > 8X8X8X8X",
 "8X8X+ 6 8 XX4X5X*Xb.%X$XQ.q.x.L.P.P.P.N.M.^.%X%X@Xl.B   8X8X8X8X",
 "8X8X$ o   }.3X7X5X5X5X,X/.Q 9.v.r.r.r.>.Q ~.<X5X5X>XA   8X8X8X8X",
-"8X8X&     A >X3X3X4X4X;X+XJ Y U U T f.z.W ~.1X6X6X3X{.  8X8X8X8X",
+"8X8X&	 A >X3X3X4X4X;X+XJ Y U U T f.z.W ~.1X6X6X3X{.  8X8X8X8X",
 "8X8X8X8X8X8XS  XoXOXOXoX}.S h 7 7 h A C.H.U.(.=X7X4X|.  8X8X8X8X",
-"8X8X8X8X8X8X    c M M `.`.`.v , , c m B.^.N.-.(.<X-XA   8X8X8X8X",
+"8X8X8X8X8X8X	c M M `.`.`.v , , c m B.^.N.-.(.<X-XA   8X8X8X8X",
 "8X8X8X8X8X8X8X8X: n V '.'.'.C V C N b B S.T.T.G.C.Z 8X8X8X8X8X8X",
 "8X8X8X8X8X8X8X8X  3 C '.'.'.].].].C , e Z.Q.Q.q.9   8X8X8X8X8X8X"
 };

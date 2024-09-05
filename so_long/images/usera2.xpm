@@ -228,7 +228,7 @@ static char *result[] = {
 "*X*X*X*Xy U P y 4 F  .^.|.#X@X@X}.}.].}.@X@X#X[.r.: *X*X*X*X*X*X",
 "*X*X*X*X. . . X # W X.^.[.XXXX+X%X$X$X%X+XXX+X_.L.  *X*X*X*X*X*X",
 "*X*X*X*X*X*XX y y.n.M.S.g.G.v R.OX&X&XOX`.U.U.U.L.k d   *X*X*X*X",
-"*X*X*X*X*X*X. u y.v.V.2.<     z `.OXOX`.I.h k F.L.J.g   *X*X*X*X",
+"*X*X*X*X*X*X. u y.v.V.2.<	 z `.OXOX`.I.h k F.L.J.g   *X*X*X*X",
 "*X*X*X*X*X*X*X*Xu U P y *X*X*X*Xv I.T.U.I.H.H.J.L.x f   *X*X*X*X",
-"*X*X*X*X*X*X*X*X. X X X *X*X*X*X    j x H.L.L.L.L.x f   *X*X*X*X"
+"*X*X*X*X*X*X*X*X. X X X *X*X*X*X	j x H.L.L.L.L.x f   *X*X*X*X"
 };

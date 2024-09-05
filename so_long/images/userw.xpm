@@ -177,12 +177,12 @@ static char *result[] = {
 "V.V.. s -.5.q.6.=.W ~ $.~ ~ Q Q ~ ~ ~ &.W ! $.;.6.q.6.-.s . V.V.",
 "V.V.V.V.8 ^ 5.8.,.) ) ) _ ` ` _ ) ) ` ) _ _ ) ` 8.9.^ 8 V.V.V.V.",
 "V.V.V.V.  4 / e.g.k.k.k.h.h.k.h.k.h.k.h.h.h.h.g.0./ 6   V.V.V.V.",
-"V.V.V.V..   & *.l.M.x.x.x.x.x.x.x.x.x.x.x.x.M.l.*.&     V.V.V.V.",
+"V.V.V.V..   & *.l.M.x.x.x.x.x.x.x.x.x.x.x.x.M.l.*.&	 V.V.V.V.",
 "V.V.V.V.f a , a.b.B.N.N.N.N.N.N.N.N.N.N.N.N.B.b.a., a f V.V.V.V.",
 "V.V.. s -.4.( f.n.B.B.B.B.B.B.B.B.B.B.B.B.B.B.n.f.( 4.-.d . V.V.",
 "V.V.. G 5.w.1.j.z.v.c.b.b.c.c.c.c.c.c.b.c.c.v.z.j.<.w.5.G . V.V.",
 "V.V.. G 5.w.7.e.s.p.d.d.d.d.d.d.d.d.d.d.d.d.p.s.e.7.w.5.G . V.V.",
 "V.V.. s -.5.4.3.n l z x x x x x x x x x x z l n 3.2.5.-.s . V.V.",
 "V.V.V.V.f C p c b t.r.r.r.r.r.r.r.r.r.r.r.r.t.b c p C f V.V.V.V.",
-"V.V.V.V.X     k v i.u.y.y.y.y.y.y.y.y.y.u.u.i.v k     X V.V.V.V."
+"V.V.V.V.X	 k v i.u.y.y.y.y.y.y.y.y.y.u.u.i.v k	 X V.V.V.V."
 };

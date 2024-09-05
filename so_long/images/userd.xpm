@@ -235,11 +235,11 @@ static char *result[] = {
 "4X4X4X4X* K X.3.R I P P U U I Y T %.;.b.G.P.U.P.A.N.A.l.g . 4X4X",
 "4X4X4X4X. 2 H k.c.'.'.'.'.'.'.].].[.}.|.U.n.B.B.N.A.G.l.f . 4X4X",
 "4X4X4X4X4X4X< j.#X>X>X>X:X:X:X:X:X,X:X$XE.*.W h g ) ` f 4X4X4X4X",
-"4X4X4X4X4X4X  /.*X2X*X@X:X>X<X<X=X*X;X<XXXT.k     . . . 4X4X4X4X",
+"4X4X4X4X4X4X  /.*X2X*X@X:X>X<X<X=X*X;X<XXXT.k	 . . . 4X4X4X4X",
 "4X4X4X4X4X4X  /.-X1X).h.{. X X{.h.).=X3X3X+XG   4X4X4X4X4X4X4X4X",
 "4X4X4X4X4X4X  G @XoXN < &.b.b.&.< b OX-X-XoX/.  4X4X4X4X4X4X4X4X",
 "4X4X4X4X4X4X  D ).(.c 3 v.H.H.v.5 x /.`.`.(.D   4X4X4X4X4X4X4X4X",
 "4X4X4X4X4X4XX - B B v A z.D.A.w.6 = V C Z b - X 4X4X4X4X4X4X4X4X",
 "4X4X4X4X4X4X4X4X- N F F A s g d $ n W.~.N - 4X4X4X4X4X4X4X4X4X4X",
-"4X4X4X4X4X4X4X4X  m ^.~.c     .   m W.W.m   4X4X4X4X4X4X4X4X4X4X"
+"4X4X4X4X4X4X4X4X  m ^.~.c	 .   m W.W.m   4X4X4X4X4X4X4X4X4X4X"
 };

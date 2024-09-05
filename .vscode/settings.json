@@ -1,6 +1,10 @@
 {
     "files.associations": {
         "client.h": "c",
-        "ratio": "c"
+        "ratio": "c",
+        "stdio.h": "c",
+        "__threading_support": "c",
+        "mlx.h": "c",
+        "stat.h": "c"
     }
 }

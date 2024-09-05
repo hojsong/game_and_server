@@ -202,7 +202,7 @@ static char *result[] = {
 "@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X",
 "@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X",
 "@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X",
-"@X@X@X@X& %                                     . $ & & @X@X@X@X",
+"@X@X@X@X& %									 . $ & & @X@X@X@X",
 "@X@X@X@X% < V C N N V V V V V V V V V C C C C Z 5 2 1 & @X@X@X@X",
 "@X@X@X@X  V [ m.b.L U { [ [ [ [ [ [ [ [ } | d.U Y w 2 O @X@X@X@X",
 "@X@X@X@X  C m.K.'.].L.I.U.J.J.J.J.U.U.G.D.A.D.S.) l 4 O @X@X@X@X",
@@ -223,7 +223,7 @@ static char *result[] = {
 "@X@X@X@X  C B.A.D.A.S.M.C.C.n.C.M.C.V.C.Z.S.Z...) l 2 O @X@X@X@X",
 "@X@X@X@X  Z U V.| | | V.V.n.n.n.n.V.| V.| V.V.} Y z 2 O @X@X@X@X",
 "@X@X@X@X% < V C C C C C C C C C C C C C C C C V 5 , 1 & @X@X@X@X",
-"@X@X@X@X> %                                     . $ & & @X@X@X@X",
+"@X@X@X@X> %									 . $ & & @X@X@X@X",
 "@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X",
 "@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X@X"
 };

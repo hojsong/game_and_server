@@ -1,6 +1,6 @@
 CC = cc
-CFLAG = -Wall -Wextra -Werror 
-# -fsanitize=address -g3
+CFLAG = -fsanitize=address -g3
+# -Wall -Wextra -Werror 
 #  -DGL_SILENCE_DEPRECATION -Wno-unused-parameter -Wno-unused-but-set-variable
 
 HEAD = header
@@ -13,7 +13,11 @@ SRC_FILES = choice.c \
             init.c \
             local.c \
             main.c \
-            web.c 
+            web.c \
+			thread.c \
+			thread2.c \
+			thread3.c \
+			thread4.c 
 
 MLX_DIR = ./mlx
 MLX_NAME = libmlx.a
