@@ -44,7 +44,7 @@ clean :
 	$(MAKE) -C $(MLX_DIR) clean # mlx 폴더에서 clean 명령어 실행
 
 fclean : clean
-	rm -rf $(NAME)
+	rm -rf $(NAME) src/*.o
 	$(MAKE) -C $(MLX_DIR) clean # mlx 폴더에서 clean 명령어 실행
 
 re : fclean all

@@ -8,9 +8,11 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <math.h>
-# include <time.h>
-# define PI 3.14159265358979323846
+# include <time.h> 
 
+# define PI 3.14159265358979323846
+# define FRAME 16660
+# define DISTANCE 16
 # define WHITE_COLOR 	16777215
 # define Player_speed	3
 # define Window_x		400
@@ -26,7 +28,7 @@
 # define HARD_MODE				40
 
 # define X_EVENT_KEY_PRESS		2
-# define X_EVENT_KET_RELEASE	3
+# define X_EVENT_KEY_RELEASE	3
 
 # define KEY_ESC				53
 # define KEY_W					13
@@ -62,12 +64,14 @@ typedef struct m_game{
 	pthread_mutex_t	player_mutex;
 	t_character 	my_character;
 	struct timeval	startTime;
+	time_t	frameTime;
 	void			*win;
 	void			*mlx;
 	pthread_mutex_t	*die_mutex;
 	pthread_t		*thread;
 	// pthread_t		collision_decision;
 	t_bullet		*bullets;
+	int				key[4];
 	int				character_x[3];
 	int				character_y[3];
 	void			*characterImages[3];
@@ -94,6 +98,7 @@ void		game_image_xpm_init(t_game *game);
 
 int			mlxstart(int key_code, t_game *game);
 
+void	*bullet_init_c_d_m_p(void *ptr);
 
 int     bulletOfMode(t_game *game);
 void	*bullets_create_destroy(void *ptr);
@@ -103,3 +108,8 @@ void	*bullets_movement(void *ptr);
 void	*space_bullets_collision_decision(void *ptr);
 
 void    *put_game_ing_image(void *ptr);
+
+
+int	key_release(int key_code, t_game *game);
+
+int	key_press(int key_code, t_game *game);

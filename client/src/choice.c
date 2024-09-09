@@ -75,6 +75,10 @@ int	modeChoice(int key_code, t_game *game)
 		// choiceImagesPut("EXIT", game);
 		gettimeofday(&game->startTime, NULL);
 		game->mode = result;
+		game->key[0] = 0;
+		game->key[1] = 0;
+		game->key[2] = 0;
+		game->key[3] = 0;
 		result = 1;
 		game->size = bulletOfMode(game);
 		game->bullets = malloc(sizeof(t_bullet) * (game->size + 1));
@@ -88,13 +92,14 @@ int	modeChoice(int key_code, t_game *game)
         	game->bullets[idx].angle = -1;
         	idx++;
     	}
-		pthread_create(&game->thread[0], NULL,
-				bullets_create_destroy, (void *)game);
-		usleep(100);
-		pthread_create(&game->thread[1], NULL,
-				bullets_movement, (void *)game);
-		pthread_create(&game->thread[2], NULL, \
-				space_bullets_collision_decision, (void *)game);
+		game->frameTime = time(NULL);
+		// pthread_create(&game->thread[0], NULL,
+		// 		bullets_create_destroy, (void *)game);
+		// usleep(100);
+		// pthread_create(&game->thread[1], NULL,
+		// 		bullets_movement, (void *)game);
+		// pthread_create(&game->thread[2], NULL, \
+		// 		space_bullets_collision_decision, (void *)game);
 		game->die = 0;
 		return (0);
 	}
@@ -127,10 +132,10 @@ int	continue_or_exit(int key_code, t_game *game)
         	free(game->bullets[idx].bullet_mutex);
         	idx++;
     	}
-		pthread_join(game->thread[0], NULL);
-		pthread_join(game->thread[1], NULL);
-		pthread_join(game->thread[2], NULL);
-		pthread_join(game->thread[3], NULL);
+		// pthread_join(game->thread[0], NULL);
+		// pthread_join(game->thread[1], NULL);
+		// pthread_join(game->thread[2], NULL);
+		// pthread_join(game->thread[3], NULL);
 		free(game->thread);
 	    free(game->bullets);
 		game->die = 2;

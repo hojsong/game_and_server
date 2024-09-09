@@ -83,15 +83,13 @@ static void putGame_view(t_game *game){
 	while (idx < game->size)
 	{
 		if (game->bulletimage && game->bullets[idx].x - 2 > 0 && game->bullets[idx].x + 2 < Window_x && game->bullets[idx].y - 2 > 0 && game->bullets[idx].y + 2 < Window_y)
-			mlx_put_image_to_window(game->mlx, game->win, game->bulletimage, game->bullets[idx].x - 2, game->bullets[idx].y - 2);
+			mlx_put_image_to_window(game->mlx, game->win, game->bulletimage, game->bullets[idx].x - 2, game->bullets[idx].y + 2);
 		idx++;
 	}
-	pthread_mutex_lock(&game->player_mutex);
 	mlx_put_image_to_window(game->mlx, game->win, \
 		game->characterImages[game->my_character.num], \
 		game->my_character.x - (game->character_x[game->my_character.num] / 2), \
 		game->my_character.y - (game->character_y[game->my_character.num] / 2));
-	pthread_mutex_unlock(&game->player_mutex);
 	// gettimeofday(&now_time, NULL);
 	// time_check(game, now_time);
 }
@@ -100,11 +98,7 @@ void    *put_game_ing_image(void *ptr)
 {
     t_game *game = (t_game *)ptr;
 
-    while (game->die < 1)
-    {
-        if (game->die == 0)
-            putGame_view(game);
-        usleep(16660);
-    }
+	if (game->die == 0)
+    	putGame_view(game);
     return (0);
 }

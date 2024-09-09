@@ -19,21 +19,18 @@ void	*bullets_movement(void *ptr){
 	int		size;
 	int		idx;
 
-	size = bulletOfMode(game);
 	idx = 0;
-	while (1)
+	while (idx < game->size)
 	{
+		if (game->die)
+			break;
 	    pthread_mutex_lock(game->bullets[idx].bullet_mutex);
 		move_point(&game->bullets[idx]);
+
 	    pthread_mutex_unlock(game->bullets[idx].bullet_mutex);
 		idx++;
 		if (game->die)
 			break;
-		if (idx >= size)
-		{
-			idx = 0;
-			usleep((16660));
-		}
 	}
 	return (0);
 }
