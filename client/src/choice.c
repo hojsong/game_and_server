@@ -9,6 +9,22 @@ int	wlmodeChoice(int key_code, t_game *game)
 		result--;
 	else if (key_code == KEY_ENTER)
 	{
+		if (result == 2 && game->sockfd != -1)
+		{
+			close(game->sockfd);
+			game->sockfd = -1;
+		}
+		else if (result == 1 && game->sockfd == -1)
+		{
+			socket_create(game);
+			if (game->sockfd == -1)
+			{
+				// Error();
+				result = 2;
+				choiceImagesPut("LocalMode", game);
+				return (0);
+			}
+		}
 		game->wlmode = result;
 		choiceImagesPut("Space1_Big", game);
 		result = 1;
@@ -119,6 +135,8 @@ int	continue_or_exit(int key_code, t_game *game)
 	{
 		if (result == 1)
 		{
+			if (game->sockfd != -1)
+				close(game->sockfd);
 			mlx_destroy_window(game->mlx, game->win);
 			exit(0);
 		}

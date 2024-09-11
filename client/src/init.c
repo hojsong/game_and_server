@@ -57,5 +57,6 @@ void	game_image_xpm_init(t_game *game)
 	game->my_character.num = -1;
 	game->mode = 0;
 	game->die = -1;
+	game->sockfd = -1;
 	// game->thread = malloc(sizeof(pthread_t) * 4);
 }

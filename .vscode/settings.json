@@ -7,6 +7,12 @@
         "mlx.h": "c",
         "stat.h": "c",
         "time.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "inet.h": "c",
+        "in.h": "c",
+        "socket.h": "c",
+        "__locale": "c",
+        "typeinfo": "c",
+        "ostream": "cpp"
     }
 }

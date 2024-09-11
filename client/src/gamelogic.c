@@ -115,6 +115,7 @@ int		calculate_score(t_game *game)
 void	score_LOAD_SAVE_view(int key_code, t_game *game)
 {
 	char	**str;
+	int		score;
 	static char name[MAX_STRING_LENGTH] = "         ";
 	static int	idx = 0;
 
@@ -186,11 +187,14 @@ void	score_LOAD_SAVE_view(int key_code, t_game *game)
         	idx++;
     	}
 	    free(game->bullets);
-		str = add_and_sort("localdata/ranklist.txt", name, calculate_score(game));
-		// if (game->wlmode == 1)
-		// 	servDataLoad(game);
-		// else if (game->wlmode == 2)
-			rankingPut(str, game);
+		score = calculate_score(game);
+		str = add_and_sort("localdata/ranklist.txt", name, score);
+		if (game->wlmode == 1)
+		{
+			all_free(str);
+			str = web_ranking_Load(name, score, game);
+		}
+		rankingPut(str, game);
 		game->die = 3;
 		idx = 0;
 		while (idx < MAX_STRING_LENGTH - 1)
