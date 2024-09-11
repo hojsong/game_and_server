@@ -15,10 +15,12 @@ void	game_image_xpm_init(t_game *game)
 			"./source/image/xpm/Space1_Small.xpm", &img_width, &img_height);
 	game->character_x[0] = img_width;
 	game->character_y[0] = img_height;
+
 	game->characterImages[1] = mlx_xpm_file_to_image(game->mlx, \
 			"./source/image/xpm/Space2_Small.xpm", &img_width, &img_height);
 	game->character_x[1] = img_width;
 	game->character_y[1] = img_height;
+	
 	game->characterImages[2] = mlx_xpm_file_to_image(game->mlx, \
 			"./source/image/xpm/Space3_Small.xpm", &img_width, &img_height);
 	game->character_x[2] = img_width;
@@ -55,5 +57,5 @@ void	game_image_xpm_init(t_game *game)
 	game->my_character.num = -1;
 	game->mode = 0;
 	game->die = -1;
-	game->thread = malloc(sizeof(pthread_t) * 4);
+	// game->thread = malloc(sizeof(pthread_t) * 4);
 }

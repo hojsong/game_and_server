@@ -5,6 +5,8 @@
         "stdio.h": "c",
         "__threading_support": "c",
         "mlx.h": "c",
-        "stat.h": "c"
+        "stat.h": "c",
+        "time.h": "c",
+        "stdlib.h": "c"
     }
 }

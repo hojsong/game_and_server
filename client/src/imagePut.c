@@ -74,11 +74,27 @@ void	airPlainChoicePut(int result, t_game *game)
 	mlx_put_image_to_window(game->mlx, game->win, game->arrow[0], x0, y1);
 	if (game->characterImages[result])
 		mlx_put_image_to_window(game->mlx, game->win, game->characterImages[result * 2], x1, y3);
-	else
-		printf("NULL\n");
 }
 
-void	imagePut()
+void	strPut(char *str, t_game *game)
 {
+	mlx_clear_window(game->mlx, game->win);
+	mlx_string_put(game->mlx, game->win, 10 , (Window_y / 2) + 90, 16777215, "Please enter your nickname");
+	mlx_string_put(game->mlx, game->win, 10 , (Window_y / 2) - 10 , 16777215, str);
+	mlx_string_put(game->mlx, game->win, 10 , (Window_y / 2) - 110, 16777215, "When finished entering, please press Enter.");
+}
 
+void	rankingPut(char **str, t_game *game)
+{
+	int idx;
+
+	mlx_clear_window(game->mlx, game->win);
+	mlx_string_put(game->mlx, game->win, (Window_x / 2) - (7 * 3) , 10, 16777215, "Ranking");
+	idx = 0;
+	while (idx < MAX_LINES && str[idx])
+	{
+		mlx_string_put(game->mlx, game->win, 10 , 20 + (idx * 15) , 16777215, str[idx]);
+		idx++;
+	}
+	mlx_string_put(game->mlx, game->win, (Window_x / 2) - ((35 * 3) + 20) , Window_y - 10, 16777215, "If confirmed, please enter any key.");
 }

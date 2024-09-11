@@ -6,7 +6,6 @@ static void    distroy_of_bullets(t_bullet *bullet)
         return;
     else if (bullet->x < 2 || bullet->x > Window_x - 2 || bullet->y < 2 || bullet->y > Window_y - 2)
     {
-        printf("%f %f\n",bullet->x , bullet->y);
         bullet->x = -1;
         bullet->y = -1;
         bullet->angle = -1;
@@ -28,7 +27,6 @@ static double get_speed_of_mode(int mode, int ran)
 
 static void     bullet_positioning(t_bullet *bullet, int mode, int ran, int ran2)
 {
-    // printf("%d %d\n", ran,  ran % 4);
     if (ran % 4 == 0)
     {
         bullet->x = (double)((ran2 % (Window_x - 4)) + 2);

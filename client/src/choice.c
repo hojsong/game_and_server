@@ -3,15 +3,14 @@
 int	wlmodeChoice(int key_code, t_game *game)
 {
 	static int  result = 1;
-	if (key_code == KEY_W || key_code == KEY_W2)
+	if (key_code == KEY_W || key_code == KEY_UP)
 		result++;
-	else if (key_code == KEY_S || key_code == KEY_S2)
+	else if (key_code == KEY_S || key_code == KEY_DOWN)
 		result--;
 	else if (key_code == KEY_ENTER)
 	{
 		game->wlmode = result;
 		choiceImagesPut("Space1_Big", game);
-		// airPlainChoicePut(0, game);
 		result = 1;
 		return (0);
 	}
@@ -32,9 +31,9 @@ int	airplainChoice(int key_code, t_game *game)
 {
 	static int  result = 0;
 
-	if (key_code == KEY_W || key_code == KEY_W2)
+	if (key_code == KEY_W || key_code == KEY_UP)
 		result++;
-	else if (key_code == KEY_S || key_code == KEY_S2)
+	else if (key_code == KEY_S || key_code == KEY_DOWN)
 		result--;
 	else if (key_code == KEY_ENTER)
 	{
@@ -57,7 +56,6 @@ int	airplainChoice(int key_code, t_game *game)
 		choiceImagesPut("Space2_Big", game);
 	if (result == 2)
 		choiceImagesPut("Space3_Big", game);
-	// airPlainChoicePut(result, game);
 	return (0);
 }
 
@@ -65,15 +63,12 @@ int	modeChoice(int key_code, t_game *game)
 {
 	static int  result = 1;
 	int	idx;
-	if (key_code == KEY_W || key_code == KEY_W2)
+	if (key_code == KEY_W || key_code == KEY_UP)
 		result++;
-	else if (key_code == KEY_S || key_code == KEY_S2)
+	else if (key_code == KEY_S || key_code == KEY_DOWN)
 		result--;
 	else if (key_code == KEY_ENTER)
 	{
-		// game->die = 1;
-		// choiceImagesPut("EXIT", game);
-		gettimeofday(&game->startTime, NULL);
 		game->mode = result;
 		game->key[0] = 0;
 		game->key[1] = 0;
@@ -92,14 +87,8 @@ int	modeChoice(int key_code, t_game *game)
         	game->bullets[idx].angle = -1;
         	idx++;
     	}
+		game->startTime = time(NULL);
 		game->frameTime = time(NULL);
-		// pthread_create(&game->thread[0], NULL,
-		// 		bullets_create_destroy, (void *)game);
-		// usleep(100);
-		// pthread_create(&game->thread[1], NULL,
-		// 		bullets_movement, (void *)game);
-		// pthread_create(&game->thread[2], NULL, \
-		// 		space_bullets_collision_decision, (void *)game);
 		game->die = 0;
 		return (0);
 	}
@@ -120,30 +109,12 @@ int	modeChoice(int key_code, t_game *game)
 
 int	continue_or_exit(int key_code, t_game *game)
 {
+	static int  result = 1;
 	int idx;
 
-	if (game->die == 1)
-	{
-    	idx = 0;
-    	while (idx < game->size)
-    	{
-	        pthread_mutex_unlock(game->bullets[idx].bullet_mutex);
-    	    pthread_mutex_destroy(game->bullets[idx].bullet_mutex);
-        	free(game->bullets[idx].bullet_mutex);
-        	idx++;
-    	}
-		// pthread_join(game->thread[0], NULL);
-		// pthread_join(game->thread[1], NULL);
-		// pthread_join(game->thread[2], NULL);
-		// pthread_join(game->thread[3], NULL);
-		free(game->thread);
-	    free(game->bullets);
-		game->die = 2;
-	}
-	static int  result = 1;
-	if (key_code == KEY_W || key_code == KEY_W2)
+	if (key_code == KEY_W || key_code == KEY_UP)
 		result++;
-	else if (key_code == KEY_S || key_code == KEY_S2)
+	else if (key_code == KEY_S || key_code == KEY_DOWN)
 		result--;
 	else if (key_code == KEY_ENTER)
 	{

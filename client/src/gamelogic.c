@@ -4,13 +4,13 @@ int	key_press(int key_code, t_game *game)
 {
 	if (game->die != 0)
 		return (0);
-	if (key_code == KEY_W || key_code == KEY_W2)
+	if (key_code == KEY_W || key_code == KEY_UP)
 		game->key[0] = 1;
-	if (key_code == KEY_A || key_code == KEY_A2)
+	if (key_code == KEY_A || key_code == KEY_LEFT)
 		game->key[1] = 1;
-	if (key_code == KEY_S || key_code == KEY_S2)
+	if (key_code == KEY_S || key_code == KEY_DOWN)
 		game->key[2] = 1;
-	if (key_code == KEY_D || key_code == KEY_D2)
+	if (key_code == KEY_D || key_code == KEY_RIGHT)
 		game->key[3] = 1;
 	return (0);
 }
@@ -19,13 +19,13 @@ int	key_release(int key_code, t_game *game)
 {
 	if (game->die != 0)
 		return (0);
-	if (key_code == KEY_W || key_code == KEY_W2)
+	if (key_code == KEY_W || key_code == KEY_UP)
 		game->key[0] = 0;
-	if (key_code == KEY_A || key_code == KEY_A2)
+	if (key_code == KEY_A || key_code == KEY_LEFT)
 		game->key[1] = 0;
-	if (key_code == KEY_S || key_code == KEY_S2)
+	if (key_code == KEY_S || key_code == KEY_DOWN)
 		game->key[2] = 0;
-	if (key_code == KEY_D || key_code == KEY_D2)
+	if (key_code == KEY_D || key_code == KEY_RIGHT)
 		game->key[3] = 0;
 	return (0);
 }
@@ -33,41 +33,40 @@ int	key_release(int key_code, t_game *game)
 void	characterMove(t_game *game)
 {
 	// wa
-	if (game->key[0] == 1 && game->key[1] == 1)
+	if (game->key[0] == 1 && game->key[1] == 1 && game->my_character.x > 2 && game->my_character.y > 2)
 	{
-		game->my_character.x -= Player_speed/2;
-		game->my_character.y -= Player_speed/2;
+		game->my_character.x -= sqrt((Player_speed * Player_speed ) / 2);
+		game->my_character.y -= sqrt((Player_speed * Player_speed ) / 2);
 	}
 	// as
-	else if (game->key[1] == 1 && game->key[2] == 1)
+	else if (game->key[1] == 1 && game->key[2] == 1 && game->my_character.x > 2 && game->my_character.y < Window_y)
 	{
-		game->my_character.x -= Player_speed/2;
-		game->my_character.y += Player_speed/2;
+		game->my_character.x -= sqrt((Player_speed * Player_speed ) / 2);
+		game->my_character.y += sqrt((Player_speed * Player_speed ) / 2);
 	}
 	// sd
-	else if (game->key[2] == 1 && game->key[3] == 1)
+	else if (game->key[2] == 1 && game->key[3] == 1 && game->my_character.x < Window_x && game->my_character.y < Window_y)
 	{
-		game->my_character.x += Player_speed/2;
-		game->my_character.y += Player_speed/2;
+		game->my_character.x += sqrt((Player_speed * Player_speed ) / 2);
+		game->my_character.y += sqrt((Player_speed * Player_speed ) / 2);
 	}
 	// wd
-	else if (game->key[3] == 1 && game->key[0] == 1)
+	else if (game->key[3] == 1 && game->key[0] == 1 && game->my_character.x < Window_x && game->my_character.y > 2)
 	{
-		game->my_character.x += Player_speed/2;
-		game->my_character.y -= Player_speed/2;
+		game->my_character.x += sqrt((Player_speed * Player_speed ) / 2);
+		game->my_character.y -= sqrt((Player_speed * Player_speed ) / 2);
 	}
-	else if (game->key[0] == 1)
+	else if (game->key[0] == 1 && game->my_character.y > 2)
 		game->my_character.y -= Player_speed;
-	else if (game->key[1] == 1)
+	else if (game->key[1] == 1 && game->my_character.x > 2)
 		game->my_character.x -= Player_speed;
-	else if (game->key[2] == 1)
+	else if (game->key[2] == 1 && game->my_character.y < Window_y)
 		game->my_character.y += Player_speed;
-	else if (game->key[3] == 1)
+	else if (game->key[3] == 1 && game->my_character.x < Window_x)
 		game->my_character.x += Player_speed;
 }
 
-
-void	*bullet_init_c_d_m_p(void *ptr)
+int	bullet_init_c_d_m_p(void *ptr)
 {
 	t_game	*game;
 	time_t now;
@@ -88,11 +87,127 @@ void	*bullet_init_c_d_m_p(void *ptr)
 	return (0);
 }
 
+void all_free(char **results) {
+    if (results) {
+        for (int i = 0; results[i] != NULL; i++) {
+            free(results[i]); // 각 문자열 메모리 해제
+        }
+        free(results); // 결과 배열 메모리 해제
+    }
+}
+
+int		calculate_score(t_game *game)
+{
+	float result;
+	
+	result = game->endTime - game->startTime;
+
+	printf("%f\n", result);
+	if (game->mode == 1)
+		result *= 1.1;
+	if (game->mode == 2)
+		result *= 1.5;
+	if (game->mode == 3)
+		result *= 1.9;
+	return ((int)result);
+}
+
+void	score_LOAD_SAVE_view(int key_code, t_game *game)
+{
+	char	**str;
+	static char name[MAX_STRING_LENGTH] = "         ";
+	static int	idx = 0;
+
+	if (idx < MAX_STRING_LENGTH - 1)
+	{
+		if (key_code == KEY_Q)
+			name[idx++] = 'Q';
+		if (key_code == KEY_W)
+			name[idx++] = 'W';
+		if (key_code == KEY_E)
+			name[idx++] = 'E';
+		if (key_code == KEY_R)
+			name[idx++] = 'R';
+		if (key_code == KEY_T)
+			name[idx++] = 'T';
+		if (key_code == KEY_Y)
+			name[idx++] = 'Y';
+		if (key_code == KEY_U)
+			name[idx++] = 'U';
+		if (key_code == KEY_I)
+			name[idx++] = 'I';
+		if (key_code == KEY_O)
+			name[idx++] = 'O';
+		if (key_code == KEY_P)
+			name[idx++] = 'P';
+		if (key_code == KEY_A)
+			name[idx++] = 'A';
+		if (key_code == KEY_S)
+			name[idx++] = 'S';
+		if (key_code == KEY_D)
+			name[idx++] = 'D';
+		if (key_code == KEY_F)
+			name[idx++] = 'F';
+		if (key_code == KEY_G)
+			name[idx++] = 'G';
+		if (key_code == KEY_H)
+			name[idx++] = 'H';
+		if (key_code == KEY_J)
+			name[idx++] = 'J';
+		if (key_code == KEY_K)
+			name[idx++] = 'K';
+		if (key_code == KEY_L)
+			name[idx++] = 'L';
+		if (key_code == KEY_Z)
+			name[idx++] = 'Z';
+		if (key_code == KEY_X)
+			name[idx++] = 'X';
+		if (key_code == KEY_C)
+			name[idx++] = 'C';
+		if (key_code == KEY_V)
+			name[idx++] = 'V';
+		if (key_code == KEY_B)
+			name[idx++] = 'B';
+		if (key_code == KEY_N)
+			name[idx++] = 'N';
+		if (key_code == KEY_M)
+			name[idx++] = 'M';
+	}
+	if (idx > 0 && key_code == KEY_BACK)
+		name[--idx] = ' ';
+	if (idx > 0 && key_code == KEY_ENTER)
+	{
+    	idx = 0;
+    	while (idx < game->size)
+    	{
+	        pthread_mutex_unlock(game->bullets[idx].bullet_mutex);
+    	    pthread_mutex_destroy(game->bullets[idx].bullet_mutex);
+        	free(game->bullets[idx].bullet_mutex);
+        	idx++;
+    	}
+	    free(game->bullets);
+		str = add_and_sort("localdata/ranklist.txt", name, calculate_score(game));
+		// if (game->wlmode == 1)
+		// 	servDataLoad(game);
+		// else if (game->wlmode == 2)
+			rankingPut(str, game);
+		game->die = 3;
+		idx = 0;
+		while (idx < MAX_STRING_LENGTH - 1)
+			name[idx++] = ' ';
+		idx = 0;
+		all_free(str);
+		game->die = 3;
+	}
+	else
+		strPut(name, game);
+}
 
 int	mlxstart(int key_code, t_game *game)
 {
 	// char	**data;
 
+	// printf("Key_code = %d\n", key_code);
 	if(game->wlmode == 0)
 		wlmodeChoice(key_code, game);
 	else if(game->my_character.num == -1)
@@ -101,16 +216,19 @@ int	mlxstart(int key_code, t_game *game)
 		modeChoice(key_code, game);
 	else if(game->die == 0)
 	{
-		// key_press(key_code, game);
-		// mlx_hook(game->win, X_EVENT_KEY_PRESS, 0, &key_press, game);
-		// mlx_hook(game->win, X_EVENT_KEY_RELEASE, 0, &key_release, game);
+		key_press(key_code, game);
+	}
+	else if (game->die == 1)
+	{
+		score_LOAD_SAVE_view(key_code, game);
+	}
+	else if (game->die == 3)
+	{
+		choiceImagesPut("EXIT", game);
+		game->die = 2;
 	}
 	else
 	{
-		// if (game->wlmode == 1)
-		// 	data = servDataLoad(game);
-		// else if (game->wlmode == 2)
-		// 	data = localDataLoad(game);
 		continue_or_exit(key_code, game);
 	}
 	return (0);

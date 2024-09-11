@@ -18,11 +18,11 @@ void	*space_bullets_collision_decision(void *ptr){
 	    pthread_mutex_unlock(game->bullets[idx].bullet_mutex);
 		if (distance <= DISTANCE)
 		{
-			printf("player : %d %d\n", game->my_character.x, game->my_character.y);
-			printf("bullet : %f %f\n",game->bullets[idx].x, game->bullets[idx].y);
 			printf("die\n");
+			game->endTime = time(NULL);
 			game->die = 1;
-			choiceImagesPut("EXIT", game);
+			strPut("", game);
+			// print Save Data
 			break;
 		}
 		idx++;

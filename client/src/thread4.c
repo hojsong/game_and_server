@@ -56,23 +56,23 @@ static int	num_check(unsigned long num)
 // 	return (result);
 // }
 
-static void	time_check(t_game *game, struct timeval now_time)
-{
-	// char			*str;
-	int				size;
-	unsigned long	sec_gap;
-	unsigned long	usec_gap;
+// static void	time_check(t_game *game, struct timeval now_time)
+// {
+// 	// char			*str;
+// 	int				size;
+// 	unsigned long	sec_gap;
+// 	unsigned long	usec_gap;
 
-	sec_gap = (now_time.tv_sec - game->startTime.tv_sec);
-	usec_gap = (now_time.tv_usec - game->startTime.tv_usec) / 1000;
-	size = num_check(sec_gap) + 3;
-	// str = getStrOfTimegap(sec_gap, usec_gap, size);
-	// if (str)
-	// {
-		// mlx_string_put(game->mlx, game->win, Window_x - (size * 10) , 0, 16777215, str);
-		// free(str);
-	// }
-}
+// 	sec_gap = (now_time.tv_sec - game->startTime.tv_sec);
+// 	usec_gap = (now_time.tv_usec - game->startTime.tv_usec) / 1000;
+// 	size = num_check(sec_gap) + 3;
+// 	// str = getStrOfTimegap(sec_gap, usec_gap, size);
+// 	// if (str)
+// 	// {
+// 		// mlx_string_put(game->mlx, game->win, Window_x - (size * 10) , 0, 16777215, str);
+// 		// free(str);
+// 	// }
+// }
 
 static void putGame_view(t_game *game){
 	int 			idx;
