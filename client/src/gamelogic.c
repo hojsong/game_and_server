@@ -102,13 +102,13 @@ int		calculate_score(t_game *game)
 	
 	result = game->endTime - game->startTime;
 
-	printf("%f\n", result);
+	// printf("%f\n", result);
 	if (game->mode == 1)
-		result *= 1.1;
+		result *= 11;
 	if (game->mode == 2)
-		result *= 1.5;
+		result *= 15;
 	if (game->mode == 3)
-		result *= 1.9;
+		result *= 19;
 	return ((int)result);
 }
 

@@ -1,23 +1,23 @@
 #include "../header/client.h"
 
-static int	num_check(unsigned long num)
-{
-	unsigned long  x;
-	int	result;
+// static int	num_check(unsigned long num)
+// {
+// 	unsigned long  x;
+// 	int	result;
 
-	x = num;
-	result = 0;
-	if (x == 0)
-		return (1);
-	else if (x < 0)
-		x *= -1;
-	while (x)
-	{
-		x /= 10;
-		result++;
-	}
-	return (result);
-}
+// 	x = num;
+// 	result = 0;
+// 	if (x == 0)
+// 		return (1);
+// 	else if (x < 0)
+// 		x *= -1;
+// 	while (x)
+// 	{
+// 		x /= 10;
+// 		result++;
+// 	}
+// 	return (result);
+// }
 
 // void	str_put_time(char *str, unsigned long num, int end, int start)
 // {
@@ -76,7 +76,7 @@ static int	num_check(unsigned long num)
 
 static void putGame_view(t_game *game){
 	int 			idx;
-	struct timeval	now_time;
+	// struct timeval	now_time;
 
 	mlx_clear_window(game->mlx, game->win);
 	idx = 0;

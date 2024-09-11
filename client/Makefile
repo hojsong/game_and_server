@@ -1,6 +1,6 @@
 CC = cc
-CFLAG = -fsanitize=address -g3
-# -Wall -Wextra -Werror 
+CFLAG = -Wall -Wextra -Werror 
+# -fsanitize=address -g3
 #  -DGL_SILENCE_DEPRECATION -Wno-unused-parameter -Wno-unused-but-set-variable
 
 HEAD = header

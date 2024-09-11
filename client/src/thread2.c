@@ -16,7 +16,6 @@ void move_point(t_bullet *bullet) {
 
 void	*bullets_movement(void *ptr){
 	t_game 	*game = (t_game *)ptr;
-	int		size;
 	int		idx;
 
 	idx = 0;

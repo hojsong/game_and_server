@@ -1,9 +1,13 @@
 #include "../header/client.h"
 
-
+void	f()
+{
+	system("Leaks ./Dodge");
+}
 
 int main()
 {
+	atexit(f);
 	t_game game;
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, Window_x, Window_y, "Dodge Bullets");

@@ -110,7 +110,6 @@ int	modeChoice(int key_code, t_game *game)
 int	continue_or_exit(int key_code, t_game *game)
 {
 	static int  result = 1;
-	int idx;
 
 	if (key_code == KEY_W || key_code == KEY_UP)
 		result++;

@@ -2,7 +2,7 @@
 
 void	game_image_xpm_init(t_game *game)
 {
-	int	img_width, img_height, i;
+	int	img_width, img_height;
 
 	game->bulletimage = mlx_xpm_file_to_image(game->mlx, \
 			"./source/image/xpm/bullet.xpm", &img_width, &img_height);
