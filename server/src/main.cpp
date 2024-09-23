@@ -39,25 +39,29 @@ int main() {
     }
     
     std::cout << "서버가 시작되었습니다. 클라이언트를 기다립니다..." << std::endl;
+    while (1)
+    {
+        // 클라이언트 연결 수락
+        client_sock = accept(server_sock, reinterpret_cast<struct sockaddr*>(&client_addr), &addr_len);
+        if (client_sock < 0) {
+            std::cerr << "클라이언트 연결 수락 실패" << std::endl;
+            close(server_sock);
+            return 1;
+        }
 
-    // 클라이언트 연결 수락
-    client_sock = accept(server_sock, reinterpret_cast<struct sockaddr*>(&client_addr), &addr_len);
-    if (client_sock < 0) {
-        std::cerr << "클라이언트 연결 수락 실패" << std::endl;
-        close(server_sock);
-        return 1;
+        std::string str;
+
+        // 데이터 수신
+        int bytes_received = recv(client_sock, buffer, sizeof(buffer) - 1, 0);
+        if (bytes_received > 0) {
+            buffer[bytes_received] = '\0'; // 문자열 종료
+            str = buffer;
+            str += "\n";
+            std::cout << "수신한 메시지: " << str << std::endl;
+            // 수신한 메시지를 클라이언트에 다시 전송
+            send(client_sock, str.c_str(), bytes_received, 0);
+        }
     }
-
-    // 데이터 수신
-    int bytes_received = recv(client_sock, buffer, sizeof(buffer) - 1, 0);
-    if (bytes_received > 0) {
-        buffer[bytes_received] = '\0'; // 문자열 종료
-        std::cout << "수신한 메시지: " << buffer << std::endl;
-
-        // 수신한 메시지를 클라이언트에 다시 전송
-        send(client_sock, buffer, bytes_received, 0);
-    }
-
     // 소켓 종료
     close(client_sock);
     close(server_sock);
