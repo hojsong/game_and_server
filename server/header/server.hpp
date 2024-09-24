@@ -1,11 +1,8 @@
 #pragma once
 
 #include "inc.hpp"
-#include "client.hpp"
 #include "ranking.hpp"
-
-class client;
-class ranking;
+#include "client.hpp"
 
 class server
 {

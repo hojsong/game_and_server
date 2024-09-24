@@ -1,9 +1,8 @@
-#pragma once
+#ifndef CLIENT_HPP
+#define CLIENT_HPP
 
 #include "inc.hpp"
 #include "ranking.hpp"
-
-class ranking;
 
 class client{
     private :
@@ -24,3 +23,5 @@ class client{
         void    setstatus(int status);
         void    request_clear();
 };
+
+#endif

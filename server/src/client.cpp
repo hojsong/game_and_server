@@ -3,9 +3,11 @@
 
 client::client(int server_fd, ranking *rank)
 {
-    this->socket_fd = accept(server_fd, NULL, NULL);
+    std::cout << "client::client" << std::endl;
+    this->addr_len = sizeof(client_addr);
+    this->socket_fd = accept(server_fd, reinterpret_cast<struct sockaddr*>(&client_addr), &addr_len);
     if (socket_fd == static_cast<uintptr_t>(-1)) {
-        this->~client();
+        std::cout << "????" << std::endl;   
     }
     this->rank = rank;
     this->request = "";
@@ -14,11 +16,12 @@ client::client(int server_fd, ranking *rank)
 
 client::~client()
 {
-    // close(socket_fd) 
+    std::cout << "client::~client" << std::endl;
 }
 
 uintptr_t     client::get_fd()
 {
+    std::cout << "client::get_fd()" << std::endl;
     return (this->socket_fd);
 }
 
@@ -36,6 +39,7 @@ ssize_t client::recving()
     {
         this->status = 1;
     }
+    std::cout << buffer << std::endl;
     return len;
 }
 
@@ -44,9 +48,15 @@ int     client::getstatus()
     return this->status;
 }
 
+void    client::setstatus(int status)
+{
+    this->status = status;
+}
+
 void    client::request_clear()
 {
     this->request.clear();
+    setstatus(0);
 }
 
 void    client::sendMessage()

@@ -12,6 +12,7 @@ server::~server()
         dest.~client();
     }
     this->rank.~ranking();
+    exit(0);
 }
 
 void    server::init()
@@ -20,7 +21,7 @@ void    server::init()
     this->server_fd = socket(AF_INET, SOCK_STREAM, 0);
     if (this->server_fd < 0) {
         std::cerr << "소켓 생성 실패" << std::endl;
-        server::~server();
+        this->~server();
     }
 
     // 주소 설정
@@ -32,14 +33,14 @@ void    server::init()
     if (bind(server_fd, reinterpret_cast<struct sockaddr*>(&server_addr), sizeof(server_addr)) < 0) {
         std::cerr << "바인딩 실패" << std::endl;
         close(server_fd);
-        server::~server();
+        this->~server();
     }
 
     // 리슨
-    if (listen(server_fd, 1024) < 0) {
+    if (listen(server_fd, 5) < 0) {
         std::cerr << "리슨 실패" << std::endl;
         close(server_fd);
-        server::~server();
+        this->~server();
     }
 
 
@@ -61,28 +62,30 @@ void    server::execute()
     int kq = kqueue();
 	if (kq == -1) {
 		std::cout << "kqueue Error!!" << std::endl;
-        server::~server();
+        this->~server();
         return ;
 	}
 
-    // change_events(this->server_fd, EVFILT_READ, EV_ADD | EV_ENABLE);
+    change_events(this->server_fd, EVFILT_READ, EV_ADD | EV_ENABLE);
     
     std::cout << "Server Start!" << std::endl;
     while(true) {
         int event_count = kevent(kq, &changeList[0], changeList.size(), eventList, 1024, 0);
-
+        std::cout << "event_count : " <<event_count << std::endl;
         changeList.clear();
+
         if (event_count == -1) {
-            server::~server();
+            this->~server();
         }
         for (int i = 0; i < event_count; ++i) { // 이벤트 개수만큼 루프 순회
             curr_event = &eventList[i];
             if (curr_event->flags & EV_ERROR) { // 에러 발생 시
+                std::cout << "EVERROR" << std::endl;
                 continue;
             }
             if (curr_event->ident == server_fd) { // 서버 소켓일 경우, 서버 인덱스 값
-                client  one_cl(server_fd, &this->rank);
-                this->clients.push_back(one_cl);
+                client  *one_cl = new client(server_fd, &this->rank);\
+                this->clients.push_back(*one_cl);
             }
             else {
                 size_t x;
@@ -90,15 +93,17 @@ void    server::execute()
                 {
                     if(clients[x].get_fd() == curr_event->ident)
                         break;
+                    std::cout << clients[x].get_fd() << "," << curr_event->ident << std::endl;
                 }
                 if (x == clients.size())
                     continue;
                 if (curr_event->filter == EVFILT_READ) {
                     ssize_t len = clients[x].recving();
+                    std::cout << "len : " << len << std::endl;
                     if (len == 0) { // 클라이언트와의 연결 종료(읽을 데이터가 없을 경우 클라이언트에게서는 0이 아닌 -1 값을 받아옴. 연결이 끊겼을 때(close)만 0 출력됨
                         std::cout << "Client " << curr_event->ident << " disconnected." << std::endl;
                         clients[x].~client();
-                        clients.erase(clients.begin() + i);
+                        clients.erase(clients.begin() + x);
                     }
                     else {
                         continue ; // 추후 다시 접근

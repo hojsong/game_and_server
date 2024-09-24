@@ -2,7 +2,7 @@
 
 ranking::ranking()
 {
-    std::ifstream inputFile("ranking/rankig_list.txt"); // 입력 파일 이름
+    std::ifstream inputFile("./ranking/ranking_list.txt"); // 입력 파일 이름
     line = 0;
 
     if (!inputFile) {
@@ -29,7 +29,7 @@ ranking::ranking()
 ranking::~ranking()
 {
     ranking::ranksorting();
-    std::string filename = "ranking/rankig_list.txt";
+    std::string filename = "./ranking/ranking_list.txt";
     
     std::ofstream outputFile(filename.c_str()); // 출력 파일 이름
 

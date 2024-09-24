@@ -23,7 +23,7 @@ $(NAME) : $(OBJ)
 
 # 오타 수정: $(OBJS)를 $(OBJ)로 수정
 clean :
-	rm -rf $(OBJ)
+	rm -rf $(SRC_DIR)/*.o
 
 fclean : clean
 	rm -rf $(NAME) src/*.o

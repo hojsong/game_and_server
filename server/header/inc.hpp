@@ -39,8 +39,8 @@
 #include <sys/wait.h>
 
 //class
-#include "client.hpp"
-#include "server.hpp"
-#include "ranking.hpp"
+class ranking; // ranking 클래스 전방 선언
+class client;  // client 클래스 전방 선언
+class server;  // server 클래스 전방 선언
 
 #define PORT    8550

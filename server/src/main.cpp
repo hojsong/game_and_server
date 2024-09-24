@@ -1,4 +1,5 @@
 #include "../header/inc.hpp"
+#include "server.hpp"
 
 int main()
 {

@@ -1,9 +1,12 @@
-#pragma once
+#ifndef RANKING_HPP
+#define RANKING_HPP
 
 #include "inc.hpp"
+#include <vector>
+#include <string>
+#include <utility>
 
-class ranking
-{
+class ranking{
     private:
         std::vector<std::pair<std::string, int>> rank;
         int                                      line;
@@ -14,3 +17,5 @@ class ranking
         void        ranksorting(void);
         std::string getMessage(void);
 };
+
+#endif
