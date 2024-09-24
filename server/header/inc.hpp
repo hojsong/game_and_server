@@ -1,9 +1,8 @@
-#pragma once;
+#pragma once
 
 //Header
 #include <iostream>
 #include <cstring>
-#include <netinet/in.h>
 #include <unistd.h>
 #include <string.h>
 #include <stdio.h>
@@ -28,8 +27,20 @@
 #include <fstream>
 #include <vector>
 #include <string>
-#include <utility> 
+#include <utility>
+#include <cstdio>
+#include <cstdlib>
+#include <sstream>
+#include <exception>
+#include <sys/select.h>
+#include <sys/poll.h>
+#include <sys/event.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
 //class
 #include "client.hpp"
 #include "server.hpp"
 #include "ranking.hpp"
+
+#define PORT    8550

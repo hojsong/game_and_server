@@ -73,6 +73,7 @@
         "tuple": "cpp",
         "type_traits": "cpp",
         "unordered_map": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "filesystem": "cpp"
     }
 }

@@ -5,7 +5,10 @@ HEAD = header
 NAME = Sever
 
 SRC_DIR = ./src
-SRC_FILES = main.c \
+SRC_FILES = main.cpp \
+			client.cpp \
+			server.cpp \
+			ranking.cpp \
 
 SRC = $(addprefix $(SRC_DIR)/,$(SRC_FILES))
 OBJ = $(SRC:.c=.o)

@@ -37,7 +37,7 @@ char**  web_ranking_Load(char *name, int score, t_game *game)
 
     result = malloc(sizeof(char *) * (MAX_LINES + 1));
     message = malloc(MAX_STRING_LENGTH + 20);
-    snprintf(message, MAX_STRING_LENGTH + 20, "%s %d", name, score);
+    snprintf(message, MAX_STRING_LENGTH + 20, "%s %d\r\n\r\n", name, score);
 
     send(game->sockfd, message, strlen(message), 0);
     

@@ -95,8 +95,10 @@ std::string ranking::getMessage(void)
 
     message = "";
     for (const auto& pair : this->rank) {
-        message += pair.first + " ";
-        message += pair.second + "\n"; // 파일에 쌍 저장
+        message.append(pair.first);
+        message.append(" ");
+        message.append(std::to_string(pair.second));
+        message.append("\n");
     }
     
     return message;

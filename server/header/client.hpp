@@ -1,16 +1,26 @@
 #pragma once
 
 #include "inc.hpp"
+#include "ranking.hpp"
 
 class ranking;
 
 class client{
     private :
-        int         socket_fd;
-        pthread_t   cl_thread;
-        ranking     *rank;
+        uintptr_t                 socket_fd;
+        struct sockaddr_in  client_addr{};
+        socklen_t           addr_len;
+        char                buffer[1024];
+        std::string         request;
+        int                 status;
+        ranking             *rank;
     public :
         client(int server_fd, ranking *rank);
         ~client();
-        void    thread_create_exe_distroy();
+        uintptr_t     get_fd();
+        ssize_t recving();
+        int     getstatus();
+        void    sendMessage();
+        void    setstatus(int status);
+        void    request_clear();
 };
