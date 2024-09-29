@@ -16,6 +16,7 @@ class ranking{
         void        save(std::string name, int score);
         void        ranksorting(void);
         std::string getMessage(void);
+        void        file_save(void);
 };
 
 #endif

@@ -5,6 +5,7 @@ ranking::ranking()
     std::ifstream inputFile("./ranking/ranking_list.txt"); // 입력 파일 이름
     line = 0;
 
+    std::cout << "Ranking" << std::endl;
     if (!inputFile) {
         std::cerr << "파일을 열 수 없습니다." << std::endl;
         return ;
@@ -33,6 +34,27 @@ ranking::~ranking()
     
     std::ofstream outputFile(filename.c_str()); // 출력 파일 이름
 
+    std::cout << "~Ranking" << std::endl;
+    while (!outputFile) {
+        std::cerr << "파일을 열 수 없습니다." << std::endl;
+        std::remove(filename.c_str());
+        outputFile = std::ofstream(filename.c_str());
+    }
+
+    for (const auto& pair : this->rank) {
+        outputFile << pair.first << " " << pair.second << "\n"; // 파일에 쌍 저장
+    }
+
+    outputFile.close(); // 파일 닫기
+}
+
+void ranking::file_save(void)
+{
+    std::string filename = "./ranking/ranking_list.txt";
+    
+    std::ofstream outputFile(filename.c_str()); // 출력 파일 이름
+
+    std::cout << "file_save" << std::endl;
     while (!outputFile) {
         std::cerr << "파일을 열 수 없습니다." << std::endl;
         std::remove(filename.c_str());
@@ -48,39 +70,47 @@ ranking::~ranking()
 
 void ranking::save(std::string name, int score)
 {
-    if (line < 10 || (line >= 10 && this->rank[line - 1].second < score)){
+    if (line == 0 || line < 10 || (line >= 10 && this->rank[line - 1].second < score)){
         this->rank.emplace_back(name, score);
         line++;
     }
+    else 
+        return ;
+    ranksorting();
+    file_save();
 }
 
 void    ranking::ranksorting(void)
 {
-    // int i,j;
-    // std::string savename;
-    // int         savescore;
+    // std::sort(rank.begin(), rank.end(), [](const std::pair<std::string, int>& a, const std::pair<std::string, int>& b) {
+    //     return a.second > b.second; // a의 second가 b의 second보다 크면 true
+    // });
 
-    std::sort(rank.begin(), rank.end(), [](const std::pair<std::string, int>& a, const std::pair<std::string, int>& b) {
-        return a.second > b.second; // a의 second가 b의 second보다 크면 true
-    });
+    int i,j;
+    std::string savename;
+    int         savescore;
 
-    // for (i = 1; i < this->line - 1; i++)
-    // {
-    //     for (j = i; j > 0; j--)
-    //     {
-    //         if (rank[j - 1].second < rank[j].second)
-    //         {
-    //             savename = rank[j].first;
-    //             savescore = rank[j].second;
-    //             rank[j].first = rank[j - 1].first;
-    //             rank[j].second = rank[j - 1].second;
-    //             rank[j - 1].first = savename;
-    //             rank[j - 1].second = savescore;
-    //         }
-    //         else
-    //             break;
-    //     }
-    // }
+    for (const auto& pair : this->rank) {
+        std::cout << pair.first << ", " << pair.second << std::endl;
+    }
+
+    for (i = 1; i < this->line; i++)
+    {
+        for (j = i; j > 0; j--)
+        {
+            if (rank[j - 1].second < rank[j].second)
+            {
+                savename = rank[j].first;
+                savescore = rank[j].second;
+                rank[j].first = rank[j - 1].first;
+                rank[j].second = rank[j - 1].second;
+                rank[j - 1].first = savename;
+                rank[j - 1].second = savescore;
+            }
+            else
+                break;
+        }
+    }
 
     if (this->line > 10)
     {
@@ -99,6 +129,7 @@ std::string ranking::getMessage(void)
         message.append(" ");
         message.append(std::to_string(pair.second));
         message.append("\n");
+        std::cout << pair.first << ", " << pair.second << std::endl;
     }
     
     return message;

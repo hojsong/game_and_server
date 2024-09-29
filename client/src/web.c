@@ -53,7 +53,7 @@ char**  web_ranking_Load(char *name, int score, t_game *game)
     }
 
     // 개행 문자('\n')를 기준으로 문자열 나누기
-    char *token = strtok(message, "\n");
+    char *token = strtok(buffer, "\n");
     while (token != NULL && count < MAX_LINES) {
         result[count] = strdup(token); // 각 줄을 배열에 저장
         count++;

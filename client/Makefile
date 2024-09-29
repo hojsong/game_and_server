@@ -14,6 +14,7 @@ SRC_FILES = choice.c \
             local.c \
             main.c \
             web.c \
+			response.c \
 			thread.c \
 			thread2.c \
 			thread3.c \

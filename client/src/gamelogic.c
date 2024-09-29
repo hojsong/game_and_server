@@ -115,6 +115,7 @@ int		calculate_score(t_game *game)
 void	score_LOAD_SAVE_view(int key_code, t_game *game)
 {
 	char	**str;
+	// char	*response;
 	int		score;
 	static char name[MAX_STRING_LENGTH] = "         ";
 	static int	idx = 0;
@@ -193,6 +194,8 @@ void	score_LOAD_SAVE_view(int key_code, t_game *game)
 		{
 			all_free(str);
 			str = web_ranking_Load(name, score, game);
+			// response = web_ranking_Load(name, score, game);
+			// str = split_response(response, '\n');
 		}
 		rankingPut(str, game);
 		game->die = 3;
