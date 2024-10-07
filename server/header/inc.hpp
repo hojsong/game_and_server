@@ -50,6 +50,13 @@
 #include <sys/wait.h>
 #include <sys/time.h>
 
+//sql
+#include <mysql_driver.h>
+#include <mysql_connection.h>
+#include <cppconn/prepared_statement.h>
+#include <cppconn/resultset.h>
+
+
 //class
 class ranking; // ranking 클래스 전방 선언
 class client;  // client 클래스 전방 선언

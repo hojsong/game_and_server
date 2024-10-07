@@ -1,0 +1,5 @@
+sql_id = "root"
+sql_password = ""
+sql_port = "3306"
+databasename = "gameServer"
+tablename = "ServerService"
