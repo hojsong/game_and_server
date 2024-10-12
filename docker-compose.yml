@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  postgresql:
+    image: postgres
+    container_name: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: gameServer  # 기본 데이터베이스 이름
+    volumes:
+      # - ./data/postgres/:/var/lib/postgresql/data
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql  # 초기화 SQL 파일 추가
+
+  pgadmin:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: password
+    volumes:
+      - ./data/pgadmin/:/var/lib/pgadmin
+      - ./pgadmin/config_local.py:/pgadmin4/config_local.py  # pgAdmin 설정 파일 추가
