@@ -74,6 +74,23 @@
         "type_traits": "cpp",
         "unordered_map": "cpp",
         "utility": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "__bits": "cpp",
+        "__tree": "cpp",
+        "charconv": "cpp",
+        "clocale": "cpp",
+        "codecvt": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "condition_variable": "cpp",
+        "format": "cpp",
+        "map": "cpp",
+        "numbers": "cpp",
+        "numeric": "cpp",
+        "queue": "cpp",
+        "random": "cpp",
+        "semaphore": "cpp",
+        "span": "cpp",
+        "variant": "cpp"
     }
 }

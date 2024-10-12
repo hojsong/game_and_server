@@ -51,6 +51,7 @@
 #include <sys/time.h>
 
 // //sql
+#include <libpq-fe.h> //postgresql
 // #include <mysql_driver.h>
 // #include <mysql_connection.h>
 // #include <cppconn/prepared_statement.h>
@@ -59,5 +60,6 @@
 
 //class
 class ranking; // ranking 클래스 전방 선언
+class sql_Integration; // sql_Integration 클래스 전방 선언
 class client;  // client 클래스 전방 선언
 class server;  // server 클래스 전방 선언

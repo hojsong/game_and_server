@@ -22,3 +22,5 @@ The client can be downloaded, and record rankings can be updated and downloaded.
 This project uses Web Socket (TCP/IP) packets for communication.
 
 I developed this project entirely on my own
+
+// libpq

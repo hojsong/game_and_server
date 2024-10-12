@@ -1,5 +1,6 @@
 sql_id = "root"
-sql_password = ""
-sql_port = "3306"
+sql_password = "password"
+sql_port = "5432"
+sql_name = "localhost"
 databasename = "gameServer"
 tablename = "ServerService"

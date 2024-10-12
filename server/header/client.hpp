@@ -3,6 +3,7 @@
 
 #include "inc.hpp"
 #include "ranking.hpp"
+#include "sql_Integration.hpp"
 
 class client{
     private :
@@ -13,8 +14,9 @@ class client{
         std::string         request;
         int                 status;
         ranking             *rank;
+        sql_Integration     *sql;
     public :
-        client(int server_fd, ranking *rank);
+        client(int server_fd, ranking *rank, sql_Integration *sql);
         ~client();
         uintptr_t     get_fd();
         ssize_t recving();

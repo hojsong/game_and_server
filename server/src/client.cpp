@@ -1,7 +1,7 @@
 #include "../header/client.hpp"
 #include "../header/inc.hpp"
 
-client::client(int server_fd, ranking *rank)
+client::client(int server_fd, ranking *rank, sql_Integration *sql)
 {
     std::cout << "client::client" << std::endl;
     this->addr_len = sizeof(client_addr);
@@ -10,6 +10,7 @@ client::client(int server_fd, ranking *rank)
         std::cout << "????" << std::endl;   
     }
     this->rank = rank;
+    this->sql = sql;
     this->request = "";
     this->status = 0;
 }
@@ -66,8 +67,12 @@ void    client::sendMessage()
     int score;
 
     iss >> name >> score;
+    
+    //file save.
     rank->save(name, score);
     rank->ranksorting();
-    message = rank->getMessage();
+
+    // message = rank->getMessage(); // file Message Setting
+    message = sql->sql_update(name, score); // sql insert and Query Data Message Setting
     send(this->socket_fd, message.c_str(), message.size() , 0);
 }

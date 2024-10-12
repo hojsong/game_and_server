@@ -95,7 +95,7 @@ void    server::execute()
                 continue;
             }
             if (curr_event->ident == server_fd) { // 서버 소켓일 경우, 서버 인덱스 값
-                client  *one_cl = new client(server_fd, &this->rank);\
+                client  *one_cl = new client(server_fd, &this->rank, &this->sql);\
                 change_events(one_cl->get_fd(), EVFILT_READ, EV_ADD | EV_ENABLE);
                 change_events(one_cl->get_fd(), EVFILT_WRITE, EV_ADD | EV_DISABLE);
                 this->clients.push_back(*one_cl);

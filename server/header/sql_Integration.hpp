@@ -5,14 +5,16 @@
 class sql_Integration
 {
     private :
-        std::string user;
-        std::string password;
-        std::string database;
-        std::string table;
-        int         port;
+        std::string sql_id;
+        std::string sql_password;
+        int         sql_port;
+        std::string sql_name;
+        std::string databasename;
+        std::string tablename;
+        PGconn *conn;
     public:
         sql_Integration();
         ~sql_Integration();
         void init();
-        char **sql_update(std::string name, int score);
-}
+        std::string sql_update(std::string name, int score);
+};
