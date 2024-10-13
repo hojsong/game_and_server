@@ -12,13 +12,14 @@ int read_data(const char *file_path, Entry *entries) {
     FILE *file = fopen(file_path, "r");
     char    name[MAX_STRING_LENGTH];
     int     score;
+
     if (!file) {
         perror("파일을 열 수 없습니다");
         return 0;
     }
 
     int count = 0;
-    while (fscanf(file, "%s %d\n", name, &score) && count < MAX_LINES) {
+    while (fscanf(file, "%s %d\n", name, &score) != -1 && count < MAX_LINES) {
         // 각 줄에서 이름과 점수를 읽어오기
         strcpy(entries[count].name, name);
         entries[count].score = score;
@@ -48,7 +49,7 @@ char** add_and_sort(const char *file_path, const char *name, int score) {
     int count = read_data(file_path, entries);
     char **result = malloc((MAX_LINES + 1) * sizeof(char*)); // 결과 저장을 위한 메모리 할당
 
-    // printf("count : %d\n", count);
+    printf("count : %d\n", count);
     if (count < MAX_LINES || score > entries[MAX_LINES - 1].score) {
         // 새로운 데이터 추가
         if (count < MAX_LINES) {

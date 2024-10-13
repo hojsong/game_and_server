@@ -18,18 +18,16 @@ up :
 # 컨테이너 중지
 clean:
 	$(COMPOSE) -f $(COMPOSE_FILE) down
-
-clean2:
-	$(COMPOSE) -f $(COMPOSE_FILE) down -v
+	$(MAKE) -C $(SERV_DIR) clean
+	$(MAKE) -C $(CLIE_DIR) clean
+	# pkill Dodge
+	# pkill DodgeServer
 
 fclean : 
 	$(COMPOSE) -f $(COMPOSE_FILE) down -v
 	$(MAKE) -C $(SERV_DIR) fclean
 	$(MAKE) -C $(CLIE_DIR) fclean
-
+	rm server/ranking/ranking_list.txt client/localdata/ranklist.txt
+	touch server/ranking/ranking_list.txt client/localdata/ranklist.txt
 # 삭제 후 다시 실행
 re: fclean all
-
-re2 : clean up
-
-re3 : clean2 up

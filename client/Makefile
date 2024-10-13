@@ -1,5 +1,5 @@
 CC = cc
-CFLAG = -Wall -Wextra -Werror 
+CFLAG = -Wall -Wextra -Werror -MMD -MP
 # -fsanitize=address -g3
 #  -DGL_SILENCE_DEPRECATION -Wno-unused-parameter -Wno-unused-but-set-variable
 
@@ -41,12 +41,12 @@ $(NAME) : $(OBJ) $(MLX_DIR)/$(MLX_NAME)
 
 # 오타 수정: $(OBJS)를 $(OBJ)로 수정
 clean :
-	rm -rf $(OBJ)
-	$(MAKE) -C $(MLX_DIR) clean # mlx 폴더에서 clean 명령어 실행
+	rm -rf $(OBJ) src/*.d
+	$(MAKE) -C $(MLX_DIR) clean
 
 fclean : clean
 	rm -rf $(NAME) src/*.o
-	$(MAKE) -C $(MLX_DIR) clean # mlx 폴더에서 clean 명령어 실행
+	$(MAKE) -C $(MLX_DIR) clean
 
 re : fclean all
 

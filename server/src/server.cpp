@@ -106,7 +106,7 @@ void    server::execute()
                 {
                     if(clients[x].get_fd() == curr_event->ident)
                         break;
-                    std::cout << clients[x].get_fd() << "," << curr_event->ident << std::endl;
+                    // std::cout << clients[x].get_fd() << "," << curr_event->ident << std::endl;
                 }
                 if (x == clients.size())
                     continue;

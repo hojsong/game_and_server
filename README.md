@@ -15,12 +15,13 @@ In Web Mode: Records are uploaded to both local storage and server.
 In Local Mode: Records are saved only to local storage.
 
 
-# Server
+# Server Overview
+This server is designed to operate on macOS, utilizing Docker to run PostgreSQL and pgAdmin for seamless interaction. The server accepts a client's submitted name and the score at the end of the game, maintaining a leaderboard that stores and displays the top 10 scores. Both the leaderboard data and the scores are saved in a file and within SQL.
 
-The client can be downloaded, and record rankings can be updated and downloaded.
+In version 1, the leaderboard is generated without using SQL; instead, scores are sorted in descending order based on the score and stored in both a file and a class.
 
-This project uses Web Socket (TCP/IP) packets for communication.
+In version 2, the server stores scores in SQL, retrieves the leaderboard values from the database, and also saves the scores in descending order to a file, which is then sent back to the client.
 
-I developed this project entirely on my own
+The communication between the client (located in client/Dodge) and the server (located in server/Server), as well as between the server and PostgreSQL (running in Docker), is established using TCP/IP(Socket).
 
-// libpq
+Feel free to modify any part of this text as needed!

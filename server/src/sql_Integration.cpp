@@ -54,6 +54,7 @@ sql_Integration::sql_Integration(){
     std::cout << "SQL Name: " << sql_name << std::endl;
     std::cout << "Database Name: " << databasename << std::endl;
     std::cout << "Table Name: " << tablename << std::endl;
+    init();
 }
 
 sql_Integration::~sql_Integration()
@@ -81,7 +82,7 @@ void sql_Integration::init()
 
 std::string sql_Integration::sql_update(std::string name, int score)
 {
-    init();
+    // init();
     std::string insertQuery = "INSERT INTO " + this->tablename + \
                                 " (name, score) VALUES ('"+name+"',"+std::to_string(score)+")";
     PGresult *res = PQexec(this->conn, insertQuery.c_str());
@@ -95,9 +96,9 @@ std::string sql_Integration::sql_update(std::string name, int score)
 
     // 결과 해제 및 연결 종료
     PQclear(res);
-    PQfinish(this->conn);
+    // PQfinish(this->conn);
 
-    init();
+    // init();
     std::string selectQuery = "SELECT name, score FROM " + this->tablename + " ORDER BY score DESC";
     PGresult *res2 = PQexec(conn, selectQuery.c_str());
 
@@ -122,7 +123,7 @@ std::string sql_Integration::sql_update(std::string name, int score)
     std::cout << "2" << std::endl;
 
     PQclear(res2);
-    PQfinish(this->conn);
+    // PQfinish(this->conn);
     std::cout << result << std::endl;
     return result;
 }
