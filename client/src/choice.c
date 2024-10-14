@@ -135,10 +135,7 @@ int	continue_or_exit(int key_code, t_game *game)
 	{
 		if (result == 1)
 		{
-			if (game->sockfd != -1)
-				close(game->sockfd);
-			mlx_destroy_window(game->mlx, game->win);
-			exit(0);
+			exit_game(game);
 		}
 		else
 		{

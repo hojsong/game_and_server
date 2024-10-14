@@ -5,6 +5,7 @@
 void		game_image_xpm_init(t_game *game);
 // void		mapinit(t_game *game);
 char	    **split_response(char const *s, char c);
+void        exit_game(t_game *game);
 
 void		choiceImagesPut(char *str, t_game *game);
 void		airPlainChoicePut(int result, t_game *game);

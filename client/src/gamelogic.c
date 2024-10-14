@@ -210,6 +210,18 @@ void	score_LOAD_SAVE_view(int key_code, t_game *game)
 		strPut(name, game);
 }
 
+void exit_game(t_game *game)
+{
+	if (game->sockfd != -1)
+		close(game->sockfd);
+	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_image(game->mlx, game->bulletimage);
+	mlx_destroy_image(game->mlx, game->characterImages[0]);
+	mlx_destroy_image(game->mlx, game->characterImages[1]);
+	mlx_destroy_image(game->mlx, game->characterImages[2]);
+	exit(0);
+}
+
 int	mlxstart(int key_code, t_game *game)
 {
 	// char	**data;
@@ -217,10 +229,7 @@ int	mlxstart(int key_code, t_game *game)
 	// printf("Key_code = %d\n", key_code);
 	if (key_code == KEY_ESC)
 	{
-		if (game->sockfd != -1)
-			close(game->sockfd);
-		mlx_destroy_window(game->mlx, game->win);
-		exit(0);
+		exit_game(game);
 	}
 	if(game->wlmode == 0)
 		wlmodeChoice(key_code, game);
