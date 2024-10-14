@@ -91,6 +91,7 @@
         "random": "cpp",
         "semaphore": "cpp",
         "span": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "ip_var.h": "c"
     }
 }
