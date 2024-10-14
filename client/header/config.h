@@ -13,9 +13,9 @@
 # include <sys/socket.h>
 # include <netinet/in.h>
 # include <netinet/ip.h>
-# ifdef __APPLE__
+// # ifdef __APPLE__
     # include <netinet/ip_var.h> // macOS에서 사용할 수 있는 헤더
-# endif
+// # endif
 # include <netinet/ip_icmp.h>
 # include <arpa/inet.h>
 # include <signal.h>

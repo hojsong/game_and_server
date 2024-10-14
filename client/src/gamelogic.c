@@ -214,11 +214,11 @@ void exit_game(t_game *game)
 {
 	if (game->sockfd != -1)
 		close(game->sockfd);
-	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_image(game->mlx, game->bulletimage);
 	mlx_destroy_image(game->mlx, game->characterImages[0]);
 	mlx_destroy_image(game->mlx, game->characterImages[1]);
 	mlx_destroy_image(game->mlx, game->characterImages[2]);
+	mlx_destroy_window(game->mlx, game->win);
 	exit(0);
 }
 
