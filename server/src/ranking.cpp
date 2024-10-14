@@ -5,7 +5,7 @@ ranking::ranking()
     std::ifstream inputFile("./ranking/ranking_list.txt"); // 입력 파일 이름
     line = 0;
 
-    std::cout << "Ranking" << std::endl;
+    // std::cout << "Ranking" << std::endl;
     if (!inputFile) {
         std::cerr << "파일을 열 수 없습니다." << std::endl;
         return ;
@@ -20,11 +20,11 @@ ranking::ranking()
 
     inputFile.close(); // 파일 닫기
 
-    // 벡터의 내용을 출력 (확인용)
-    for (const auto& pair : this->rank) {
-        std::cout << pair.first << " " << pair.second << std::endl;
-        line++;
-    }
+    // // 벡터의 내용을 출력 (확인용)
+    // for (const auto& pair : this->rank) {
+    //     std::cout << pair.first << " " << pair.second << std::endl;
+    //     line++;
+    // }
 }
 
 ranking::~ranking()
@@ -34,7 +34,7 @@ ranking::~ranking()
     
     std::ofstream outputFile(filename.c_str()); // 출력 파일 이름
 
-    std::cout << "~Ranking" << std::endl;
+    // std::cout << "~Ranking" << std::endl;
     while (!outputFile) {
         std::cerr << "파일을 열 수 없습니다." << std::endl;
         std::remove(filename.c_str());
@@ -54,7 +54,7 @@ void ranking::file_save(void)
     
     std::ofstream outputFile(filename.c_str()); // 출력 파일 이름
 
-    std::cout << "file_save" << std::endl;
+    // std::cout << "file_save" << std::endl;
     while (!outputFile) {
         std::cerr << "파일을 열 수 없습니다." << std::endl;
         std::remove(filename.c_str());
@@ -90,9 +90,9 @@ void    ranking::ranksorting(void)
     std::string savename;
     int         savescore;
 
-    for (const auto& pair : this->rank) {
-        std::cout << pair.first << ", " << pair.second << std::endl;
-    }
+    // for (const auto& pair : this->rank) {
+        // std::cout << pair.first << ", " << pair.second << std::endl;
+    // }
 
     for (i = 1; i < this->line; i++)
     {
@@ -129,7 +129,7 @@ std::string ranking::getMessage(void)
         message.append(" ");
         message.append(std::to_string(pair.second));
         message.append("\n");
-        std::cout << pair.first << ", " << pair.second << std::endl;
+        // std::cout << pair.first << ", " << pair.second << std::endl;
     }
     
     return message;

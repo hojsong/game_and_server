@@ -215,6 +215,13 @@ int	mlxstart(int key_code, t_game *game)
 	// char	**data;
 
 	// printf("Key_code = %d\n", key_code);
+	if (key_code == KEY_ESC)
+	{
+		if (game->sockfd != -1)
+			close(game->sockfd);
+		mlx_destroy_window(game->mlx, game->win);
+		exit(0);
+	}
 	if(game->wlmode == 0)
 		wlmodeChoice(key_code, game);
 	else if(game->my_character.num == -1)
@@ -231,7 +238,7 @@ int	mlxstart(int key_code, t_game *game)
 	}
 	else if (game->die == 3)
 	{
-		choiceImagesPut("EXIT", game);
+		choiceImagesPut("Continue", game);
 		game->die = 2;
 	}
 	else

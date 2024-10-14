@@ -3,11 +3,12 @@
 
 client::client(int server_fd, ranking *rank, sql_Integration *sql)
 {
-    std::cout << "client::client" << std::endl;
+    std::cout << "Accept" << std::endl;
     this->addr_len = sizeof(client_addr);
     this->socket_fd = accept(server_fd, reinterpret_cast<struct sockaddr*>(&client_addr), &addr_len);
     if (socket_fd == static_cast<uintptr_t>(-1)) {
-        std::cout << "????" << std::endl;   
+        std::cout << "Accept Failed" << std::endl;
+        client::~client();   
     }
     this->rank = rank;
     this->sql = sql;
@@ -17,12 +18,11 @@ client::client(int server_fd, ranking *rank, sql_Integration *sql)
 
 client::~client()
 {
-    std::cout << "client::~client" << std::endl;
+    // std::cout << "Disconnect" << std::endl;
 }
 
 uintptr_t     client::get_fd()
 {
-    std::cout << "client::get_fd()" << std::endl;
     return (this->socket_fd);
 }
 
@@ -40,7 +40,7 @@ ssize_t client::recving()
     {
         this->status = 1;
     }
-    std::cout << buffer << std::endl;
+    // std::cout << buffer << std::endl;
     return len;
 }
 

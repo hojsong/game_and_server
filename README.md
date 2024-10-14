@@ -16,7 +16,8 @@ In Local Mode: Records are saved only to local storage.
 
 
 # Server Overview
-This server is designed to operate on macOS, utilizing Docker to run PostgreSQL and pgAdmin for seamless interaction. The server accepts a client's submitted name and the score at the end of the game, maintaining a leaderboard that stores and displays the top 10 scores. Both the leaderboard data and the scores are saved in a file and within SQL.
+This server is designed to operate on macOS, You need libpq to use postgresql(brew install libpq).
+ utilizing Docker to run PostgreSQL and pgAdmin for seamless interaction. The server accepts a client's submitted name and the score at the end of the game, maintaining a leaderboard that stores and displays the top 10 scores. Both the leaderboard data and the scores are saved in a file and within SQL.
 
 In version 1, the leaderboard is generated without using SQL; instead, scores are sorted in descending order based on the score and stored in both a file and a class.
 

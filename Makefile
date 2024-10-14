@@ -20,8 +20,8 @@ clean:
 	$(COMPOSE) -f $(COMPOSE_FILE) down
 	$(MAKE) -C $(SERV_DIR) clean
 	$(MAKE) -C $(CLIE_DIR) clean
-	# pkill Dodge
-	# pkill DodgeServer
+	pkill Dodge
+	pkill DodgeServer
 
 fclean : 
 	$(COMPOSE) -f $(COMPOSE_FILE) down -v

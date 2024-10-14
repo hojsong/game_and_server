@@ -70,7 +70,7 @@ void    server::execute()
 
     int kq = kqueue();
 	if (kq == -1) {
-		std::cout << "kqueue Error!!" << std::endl;
+		// std::cout << "kqueue Error!!" << std::endl;
         this->~server();
         return ;
 	}
@@ -106,13 +106,12 @@ void    server::execute()
                 {
                     if(clients[x].get_fd() == curr_event->ident)
                         break;
-                    // std::cout << clients[x].get_fd() << "," << curr_event->ident << std::endl;
                 }
                 if (x == clients.size())
                     continue;
                 if (curr_event->filter == EVFILT_READ) {
                     ssize_t len = clients[x].recving();
-                    std::cout << "len : " << len << std::endl;
+                    // std::cout << "len : " << len << std::endl;
                     if (len > 0 && clients[x].getstatus() == 1)
                     {
                         change_events(curr_event->ident, EVFILT_READ, EV_DISABLE); // 클라이언트 READ 이벤트 비활성화
@@ -132,7 +131,7 @@ void    server::execute()
                     change_events(curr_event->ident, EVFILT_READ, EV_ENABLE); // 클라이언트 READ 이벤트 활성화
                     change_events(curr_event->ident, EVFILT_WRITE, EV_DISABLE); // 클아이언트 WRITE 이벤트 비활성화
                     clients[x].request_clear();
-                    std::cout << "response ok" << std::endl;
+                    // std::cout << "response ok" << std::endl;
                 }
             }
         }

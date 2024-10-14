@@ -125,7 +125,7 @@ int	modeChoice(int key_code, t_game *game)
 
 int	continue_or_exit(int key_code, t_game *game)
 {
-	static int  result = 1;
+	static int  result = 2;
 
 	if (key_code == KEY_W || key_code == KEY_UP)
 		result++;
@@ -148,7 +148,7 @@ int	continue_or_exit(int key_code, t_game *game)
 			game->my_character.num = -1;
 			choiceImagesPut("WebMode", game);
 		}
-		result = 1;
+		result = 2;
 		return (0);
 	}
 	else

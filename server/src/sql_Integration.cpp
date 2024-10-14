@@ -48,12 +48,12 @@ sql_Integration::sql_Integration(){
     configFile.close();
 
     // 결과 출력
-    std::cout << "SQL ID: " << sql_id << std::endl;
-    std::cout << "SQL Password: " << sql_password << std::endl;
-    std::cout << "SQL Port: " << sql_port << std::endl;
-    std::cout << "SQL Name: " << sql_name << std::endl;
-    std::cout << "Database Name: " << databasename << std::endl;
-    std::cout << "Table Name: " << tablename << std::endl;
+    // std::cout << "SQL ID: " << sql_id << std::endl;
+    // std::cout << "SQL Password: " << sql_password << std::endl;
+    // std::cout << "SQL Port: " << sql_port << std::endl;
+    // std::cout << "SQL Name: " << sql_name << std::endl;
+    // std::cout << "Database Name: " << databasename << std::endl;
+    // std::cout << "Table Name: " << tablename << std::endl;
     init();
 }
 
@@ -92,7 +92,7 @@ std::string sql_Integration::sql_update(std::string name, int score)
         PQclear(res);
         return NULL;
     }
-    std::cout << "데이터가 성공적으로 삽입되었습니다." << std::endl;
+    // std::cout << "데이터가 성공적으로 삽입되었습니다." << std::endl;
 
     // 결과 해제 및 연결 종료
     PQclear(res);
@@ -108,22 +108,20 @@ std::string sql_Integration::sql_update(std::string name, int score)
         return NULL;
     }
 
-    std::cout << "데이터 받기 성공" << std::endl;
+    // std::cout << "데이터 받기 성공" << std::endl;
     // 결과 출력
     int rows = PQntuples(res2);
     std::string result = "";
 
-    std::cout << "1rows : " << rows << std::endl;
     for (int i = 0; i < rows && i < 10; i++) {
         result += PQgetvalue(res2, i, 0);
         result += " ";
         result += PQgetvalue(res2, i, 1);
         result += "\n";
     }
-    std::cout << "2" << std::endl;
 
     PQclear(res2);
     // PQfinish(this->conn);
-    std::cout << result << std::endl;
+    // std::cout << result << std::endl;
     return result;
 }
