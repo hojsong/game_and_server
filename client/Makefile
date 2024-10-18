@@ -6,7 +6,24 @@ CFLAG = -Wall -Wextra -Werror -MMD -MP
 HEAD = header
 NAME = Dodge
 
-SRC_DIR = ./src
+OS := $(shell uname)
+
+ifeq ($(OS), Darwin)
+    # macOS
+    SRC_DIR = ./src_macos	\
+	MLX_DIR = ./mlx			\
+	MLX_NAME = libmlx.a
+else ifeq ($(OS), Windows_NT)
+    # Windows
+    SRC_DIR = ./src_window
+	MLX_DIR = ./mlx			\
+	MLX_NAME = libmlx.a
+else ifeq ($(OS), Linux)
+    # Linux
+    SRC_DIR =  
+endif
+
+# SRC_DIR = ./src
 SRC_FILES = choice.c \
             gamelogic.c \
             imagePut.c \
