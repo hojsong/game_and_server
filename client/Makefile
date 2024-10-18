@@ -125,20 +125,21 @@ OBJ = $(SRC:.c=.o)
 all : $(MLX_NAME) $(NAME)
 
 .c.o :
-	$(CC) $(CFLAG) -I $(HEAD) -L$(MLX_DIR) $(ADDFLAG) -c $< -o $@ -lmlx $(ADDFLAG2)
+	$(CC) $(CFLAG) -I $(HEAD) -c $< -o $@
 
 $(MLX_NAME):
 	$(MAKE) -C $(MLX_DIR)
 
 $(NAME) : $(OBJ) $(MLX_DIR)/$(MLX_NAME)
 	$(CC) $(CFLAG) -I $(HEAD) -L$(MLX_DIR) $(ADDFLAG) -o $(NAME) $(OBJ) -lmlx $(ADDFLAG2)
+
 # 오타 수정: $(OBJS)를 $(OBJ)로 수정
 clean :
-	rm -rf $(OBJ) $(SRC_DIR)/*.d
+	rm -rf $(OBJ) $(SRC_DIR)/*.d $(SRC_DIR)/*.o
 	$(MAKE) -C $(MLX_DIR) clean
 
 fclean : clean
-	rm -rf $(NAME) $(SRC_DIR)/*.o
+	rm -rf $(NAME)
 	$(MAKE) -C $(MLX_DIR) clean
 
 re : fclean all
