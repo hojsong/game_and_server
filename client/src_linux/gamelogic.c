@@ -84,6 +84,7 @@ int	bullet_init_c_d_m_p(void *ptr)
 	}
 	space_bullets_collision_decision(game);
 	put_game_ing_image(game);
+	usleep(10000);
 	return (0);
 }
 
