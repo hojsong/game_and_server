@@ -10,27 +10,42 @@
 # include <sys/time.h>
 # include <math.h>
 # include <time.h> 
-# include <sys/socket.h>
-# include <netinet/in.h>
-# include <netinet/ip.h>
 
 #ifdef __APPLE__
+	#include <sys/socket.h>
+	#include <netinet/in.h>
+	#include <netinet/ip.h>
     #include "../mlx_macos/mlx.h"
+	#include <arpa/inet.h>
 	#include "key_mac.h"
-// #elif defined(_WIN32) || defined(_WIN64)
-//     #include "../mlx_window/mlx.h"
-// 	#include "key_win.h"
+	#include <netinet/ip_icmp.h>
+	#include <netdb.h>
+	#include <regex.h>
+#elif defined(_WIN32) || defined(_WIN64)
+	#include <SDL.h>
+	// #include <SDL_image.h>
+	// #include <SDL_ttf.h>
+	// #include <SDL2/SDL.h>
+	// #include <SDL2/SDL_image.h>
+	// #include <SDL2/SDL_ttf.h>
+	#include <winsock2.h> // Windows 소켓 헤더
+	#include <ws2tcpip.h> // IP 주소 변환 함수
+	#include <fcntl.h> // for _open
+	#include <io.h> // for _setmode
 #else
+	#include <sys/socket.h>
+	#include <netinet/in.h>
+	#include <netinet/ip.h>
     #include "../mlx_linux/mlx.h"
+	#include <netinet/ip_icmp.h>
+	#include <netdb.h>
+	#include <arpa/inet.h>
 	#include "key_linux.h"
+	#include <regex.h>
 #endif
 
-# include <netinet/ip_icmp.h>
-# include <arpa/inet.h>
-# include <signal.h>
-# include <netdb.h>
-# include <regex.h>
-# include <ctype.h>
+#include <signal.h>
+#include <ctype.h>
 
 //key and define
 # define DEST_PORT 0
@@ -74,7 +89,13 @@ typedef struct m_bullet{
 	double	y;
 	double	angle;
 	double	speed;
+#ifdef __APPLE__
 	pthread_mutex_t	*bullet_mutex;
+#elif defined(_WIN32) || defined(_WIN64)
+	SDL_mutex *bullet_mutex;
+#else
+	pthread_mutex_t	*bullet_mutex;
+#endif
 } t_bullet;
 
 typedef struct {
@@ -94,8 +115,6 @@ typedef struct m_game{
 	time_t			startTime;
 	time_t			endTime;
 	time_t			frameTime;
-	void			*win;
-	void			*mlx;
 	pthread_mutex_t	*die_mutex;
 	// pthread_t		*thread;
 	// pthread_t		collision_decision;
@@ -106,6 +125,16 @@ typedef struct m_game{
 	void			*characterImages[3];
 	void			*arrow[2];
 	void			*bulletimage;
+#ifdef __APPLE__
+	void			*win;
+	void			*mlx;
+#elif defined(_WIN32) || defined(_WIN64)
+	SDL_Window *win;
+	SDL_Renderer *renderer;
+#else
+	void			*win;
+	void			*mlx;
+#endif
 	// void		*characterImages[6];
 	// void		*characterImages[5];
 	// void		*backgraunbd;

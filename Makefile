@@ -37,4 +37,4 @@ ifeq ($(OS), Darwin)
 	pkill DodgeServer
 endif
 # 삭제 후 다시 실행
-re: fclean all
+re: fclean allamak
