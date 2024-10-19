@@ -27,10 +27,9 @@ fclean :
 	$(COMPOSE) -f $(COMPOSE_FILE) down -v
 	$(MAKE) -C $(SERV_DIR) fclean
 	$(MAKE) -C $(CLIE_DIR) fclean
-	pkill Dodge
-	pkill DodgeServer
 	rm server/ranking/ranking_list.txt client/localdata/ranklist.txt
 	touch server/ranking/ranking_list.txt client/localdata/ranklist.txt
-
+	pkill Dodge
+	pkill DodgeServer
 # 삭제 후 다시 실행
 re: fclean all
