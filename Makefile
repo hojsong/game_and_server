@@ -6,6 +6,9 @@ COMPOSE_FILE = docker-compose.yml
 
 SERV_DIR = ./server
 CLIE_DIR = ./client
+
+OS := $(shell uname)
+
 # 기본 타겟
 all: 
 	$(MAKE) -C $(SERV_DIR) 
@@ -29,7 +32,9 @@ fclean :
 	$(MAKE) -C $(CLIE_DIR) fclean
 	rm server/ranking/ranking_list.txt client/localdata/ranklist.txt
 	touch server/ranking/ranking_list.txt client/localdata/ranklist.txt
+ifeq ($(OS), Darwin)
 	pkill Dodge
 	pkill DodgeServer
+endif
 # 삭제 후 다시 실행
 re: fclean all
