@@ -55,20 +55,22 @@ void server::init()
         return;  // 객체 소멸자를 호출하지 않고 종료
     }
 }
-
+#ifdef __APPLE__
+void server::change_events(uintptr_t const & ident, int16_t const & filter, uint16_t const & flags)
+{
+    struct kevent temp_event;
+    EV_SET(&temp_event, ident, filter, flags, 0, 0, NULL);
+    changeList.push_back(temp_event);
+}
+#else
 void server::change_events(uintptr_t const & ident, int16_t const & filter, uint16_t const & /*flags*/)
 {
-#ifdef __APPLE__
-    struct kevent temp_event;
-    EV_SET(&temp_event, ident, filter, 0, 0, NULL); // flags를 사용하지 않음
-    changeList.push_back(temp_event);
-#else
     struct pollfd temp_event;
     temp_event.fd = static_cast<int>(ident); // uintptr_t에서 int로 변환
     temp_event.events = filter; // POLLIN, POLLOUT 등을 사용
     changeList.push_back(temp_event);
-#endif
 }
+#endif
 
 void server::execute() {
 #ifdef __APPLE__
