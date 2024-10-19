@@ -86,18 +86,18 @@ ifeq ($(OS), Darwin)
     SRC_DIR = ./src_macos
 	MLX_DIR = ./mlx_macos
 	ADDFLAG += -framework OpenGL -framework AppKit
-# else ifeq ($(OS), Windows_NT)
-#     # Windows
-#     SRC_DIR = ./src_window
-# 	MLX_DIR = ./mlx_linux
-# 	ADDFLAG += -lGL -lGLU
-# 	ADDFLAG2 += -lX11 -lXext -lXrandr -lXrender -lm
 else ifeq ($(OS), Linux)
     # Linux
 	SRC_DIR = ./src_linux
 	MLX_DIR = ./mlx_linux
 	ADDFLAG += -lGL -lGLU
 	ADDFLAG2 += -lX11 -lXext -lXrandr -lXrender -lm
+# else ifeq ($(OS), Windows_NT)
+#     # Windows
+#     SRC_DIR = ./src_window
+# 	MLX_DIR = ./mlx_linux
+# 	ADDFLAG += -lGL -lGLU
+# 	ADDFLAG2 += -lX11 -lXext -lXrandr -lXrender -lm
 endif
 
 # SRC_DIR = ./src
