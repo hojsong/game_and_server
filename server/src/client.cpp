@@ -6,10 +6,17 @@ client::client(int server_fd, ranking *rank, sql_Integration *sql)
     std::cout << "Accept" << std::endl;
     this->addr_len = sizeof(client_addr);
     this->socket_fd = accept(server_fd, reinterpret_cast<struct sockaddr*>(&client_addr), &addr_len);
+#ifdef __APPLE__
     if (socket_fd == static_cast<uintptr_t>(-1)) {
         std::cout << "Accept Failed" << std::endl;
         client::~client();   
     }
+#else
+    if (socket_fd == -1) {
+        std::cout << "Accept Failed" << std::endl;
+        client::~client();   
+    }
+#endif
     this->rank = rank;
     this->sql = sql;
     this->request = "";
@@ -21,10 +28,17 @@ client::~client()
     // std::cout << "Disconnect" << std::endl;
 }
 
+#ifdef __APPLE__
 uintptr_t     client::get_fd()
 {
     return (this->socket_fd);
 }
+#else
+int     client::get_fd()
+{
+    return (this->socket_fd);
+}
+#endif
 
 ssize_t client::recving()
 {

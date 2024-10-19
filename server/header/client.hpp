@@ -7,7 +7,11 @@
 
 class client{
     private :
-        uintptr_t                 socket_fd;
+        #ifdef __APPLE__
+        uintptr_t               socket_fd;
+        #else
+        int                     socket_fd;
+        #endif
         struct sockaddr_in  client_addr{};
         socklen_t           addr_len;
         char                buffer[1024];
@@ -18,7 +22,11 @@ class client{
     public :
         client(int server_fd, ranking *rank, sql_Integration *sql);
         ~client();
+        #ifdef __APPLE__
         uintptr_t     get_fd();
+        #else
+        int     get_fd();
+        #endif
         ssize_t recving();
         int     getstatus();
         void    sendMessage();

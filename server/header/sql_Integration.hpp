@@ -1,6 +1,7 @@
 #pragma once
 
 #include "inc.hpp"
+#include <algorithm>
 
 class sql_Integration
 {

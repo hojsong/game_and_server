@@ -19,14 +19,10 @@ sql_Integration::sql_Integration(){
         // '='로 키와 값을 분리
         if (std::getline(iss, key, '=') && std::getline(iss, value)) {
             // 공백 제거
-            key.erase(remove(key.begin(), key.end(), ' '), key.end());
-            value.erase(remove(value.begin(), value.end(), ' '), value.end());
+            key.erase(std::remove(key.begin(), key.end(), ' '), key.end());
+            value.erase(std::remove(value.begin(), value.end(), ' '), value.end());
 
-            // 따옴표 제거
-            if (value.front() == '"' && value.back() == '"') {
-                value = value.substr(1, value.size() - 2);
-            }
-
+            std::cout << "Key: " << key << ", Value: " << value << std::endl;
             // 변수에 값 할당
             if (key == "sql_id") {
                 sql_id = value;

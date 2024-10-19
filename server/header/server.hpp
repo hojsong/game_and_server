@@ -8,11 +8,16 @@
 class server
 {
     private :
-        sql_Integration         sql;
+        #ifdef __APPLE__
         uintptr_t               server_fd;
+        std::vector<struct kevent> changeList;
+        #else
+        int                     server_fd;
+        std::vector<struct pollfd> changeList;
+        #endif
+        sql_Integration         sql;
         struct sockaddr_in      server_addr{};
         std::vector<client>     clients;
-        std::vector<struct kevent> changeList;
         ranking                 rank;
     public :
         server();

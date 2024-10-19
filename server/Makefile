@@ -1,5 +1,7 @@
 CXX = c++
-CXXFLAG = -Wall -Wextra -Werror -std=c++2a -MMD -MP
+CXXFLAG = -Wall -Wextra -Werror -MMD -MP
+ADDFLAG =
+ADDFLAG2 =
 
 HEAD = header
 NAME = DodgeServer
@@ -14,13 +16,31 @@ SRC_FILES = main.cpp \
 SRC = $(addprefix $(SRC_DIR)/,$(SRC_FILES))
 OBJ = $(SRC:.cpp=.o)
 
+OS := $(shell uname)
+
+ifeq ($(OS), Darwin)
+    # macOS
+	CXXFLAG += -std=c++2a
+	ADDFLAG += -lpq
+else ifeq ($(OS), Linux)
+    # Linux
+	CXXFLAG += -std=c++20 -I/usr/include/postgresql
+	ADDFLAG2 += -lpq
+# else ifeq ($(OS), Windows_NT)
+#     # Windows
+#     SRC_DIR = ./src_window
+# 	MLX_DIR = ./mlx_linux
+# 	ADDFLAG += -lGL -lGLU
+# 	ADDFLAG2 += -lX11 -lXext -lXrandr -lXrender -lm
+endif
+
 all : $(NAME)
 
 .cpp.o :
 	$(CXX) $(CXXFLAG) -I $(HEAD) -I/usr/local/opt/libpq/include -c $< -o $@
 
 $(NAME) : $(OBJ) 
-	$(CXX) $(CXXFLAG) -I $(HEAD) -I/usr/local/opt/libpq/include -L/usr/local/opt/libpq/lib -lpq -o $(NAME) $(OBJ)
+	$(CXX) $(CXXFLAG) -I $(HEAD) -I/usr/local/opt/libpq/include -L/usr/local/opt/libpq/lib $(ADDFLAG) -o $(NAME) $(OBJ) $(ADDFLAG2)
 
 # 오타 수정: $(OBJS)를 $(OBJ)로 수정
 clean :
